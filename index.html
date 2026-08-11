@@ -644,46 +644,64 @@ ul { margin: 0; padding: 0; }
 }
 
 /* ==========================================================================
-   플로팅 채용 광고 팝업 (우측 하단, 뷰포트 폭의 약 1/4)
+   플로팅 채용 광고 팝업 — 우측 상단 (드래그로 이동 가능)
+   · 이미지 세로가 길어서 상단까지 뻗던 문제 → 이미지 height 260px 상한 + object-fit
+   · 위치는 헤더 아래(top:100px)에서 시작, 사용자가 드래그로 원하는 위치로 이동
+   · 이동한 위치는 sessionStorage에 저장되어 페이지 간 유지
    ========================================================================== */
 .promo-popup {
   position: fixed;
+  top: 100px;
   right: 16px;
-  bottom: 16px;
-  width: 25vw;
-  min-width: 220px;
-  max-width: 340px;
+  width: 220px;
   z-index: 500;
   background: #ffffff;
   border-radius: 12px;
   overflow: hidden;
   -webkit-box-shadow: 0 12px 40px rgba(13,43,69,.28);
           box-shadow: 0 12px 40px rgba(13,43,69,.28);
+  -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
 }
 .promo-popup.promo-hidden { display: none; }
+.promo-popup.promo-dragging { -webkit-transition: none !important; transition: none !important; opacity: 0.92; }
+/* 상단 드래그 핸들 (팝업을 잡고 이동) */
+.promo-drag {
+  position: absolute; top: 0; left: 0; right: 40px; height: 26px;
+  background: rgba(13,43,69,0.75);
+  color: rgba(255,255,255,0.9);
+  cursor: move; cursor: grab;
+  text-align: center; line-height: 26px;
+  font-size: 11px; letter-spacing: 1px;
+  z-index: 2;
+  -webkit-tap-highlight-color: rgba(0,0,0,.2);
+  -webkit-transition: background .15s; transition: background .15s;
+}
+.promo-drag:hover { background: rgba(13,43,69,0.95); color: #ffffff; }
+.promo-popup.promo-dragging .promo-drag { cursor: -webkit-grabbing; cursor: grabbing; }
+.promo-drag:before { content: "⋮⋮  드래그해서 이동  ⋮⋮"; }
 .promo-close {
   position: absolute;
-  top: 8px;
-  right: 8px;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 0;
-  padding: 0;
-  background: rgba(0,0,0,.6);
+  top: 0; right: 0;
+  width: 40px; height: 26px;
+  border-radius: 0;
+  border: 0; padding: 0;
+  background: rgba(0,0,0,0.75);
   color: #ffffff;
-  font-size: 20px;
-  line-height: 30px;
+  font-size: 18px; line-height: 24px;
   font-family: inherit;
   cursor: pointer;
   text-align: center;
-  z-index: 2;
+  z-index: 3;
   -webkit-tap-highlight-color: rgba(0,0,0,.2);
 }
-.promo-close:hover { background: rgba(0,0,0,.85); }
-.promo-close:focus { outline: 2px solid #ffffff; outline-offset: 2px; }
-.promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; }
-.promo-link img { display: block; width: 100%; height: auto; }
+.promo-close:hover { background: rgba(0,0,0,0.95); }
+.promo-close:focus { outline: 2px solid #ffffff; outline-offset: -2px; }
+.promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; margin-top: 26px; }
+.promo-link img {
+  display: block; width: 100%;
+  height: 260px;
+  object-fit: cover; object-position: top center;
+}
 .promo-cta {
   display: block;
   padding: 10px 12px;
@@ -695,10 +713,14 @@ ul { margin: 0; padding: 0; }
   letter-spacing: -0.3px;
 }
 .promo-link:hover .promo-cta { background: #0f57b8; }
-/* 모바일: 축소해서 콘텐츠 침범 최소화 */
+/* 모바일: 폭·이미지·핸들 축소 (콘텐츠 침범 최소화) */
 @media screen and (max-width: 640px) {
-  .promo-popup { right: 10px; bottom: 10px; width: 42vw; min-width: 150px; max-width: 180px; }
-  .promo-close { width: 28px; height: 28px; font-size: 18px; line-height: 26px; }
+  .promo-popup { top: 76px; right: 10px; width: 160px; }
+  .promo-drag { height: 22px; right: 32px; line-height: 22px; font-size: 10px; }
+  .promo-drag:before { content: "⋮⋮ 이동 ⋮⋮"; }
+  .promo-close { width: 32px; height: 22px; font-size: 16px; line-height: 20px; }
+  .promo-link { margin-top: 22px; }
+  .promo-link img { height: 180px; }
   .promo-cta { padding: 8px 6px; font-size: 12px; }
 }
 
@@ -1040,6 +1062,7 @@ ul { margin: 0; padding: 0; }
 
 <!-- ===================== 플로팅 채용 광고 팝업 ===================== -->
 <aside class="promo-popup promo-hidden" id="promoPopup" aria-label="채움서비스 호텔 하우스키핑 채용 안내">
+  <div class="promo-drag" id="promoDrag" title="드래그해서 이동" aria-hidden="true"></div>
   <button type="button" class="promo-close" onclick="closePromoPopup()" aria-label="채용 광고 닫기">&times;</button>
   <a class="promo-link" href="contact.html#chaeum-apply">
     <img src="images/housekeeping-recruit.jpg" alt="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집 안내">
@@ -1246,6 +1269,79 @@ ul { margin: 0; padding: 0; }
       if (window.sessionStorage) { window.sessionStorage.setItem('promoPopupClosed', '1'); }
     } catch (ePromo2) {}
   };
+
+  /* ---------- 5-b. 팝업 드래그 이동 (상단 핸들) ----------
+     · 상단 회색 스트립(⋮⋮ 드래그해서 이동 ⋮⋮)을 잡고 마우스/터치로 이동
+     · 이미지·닫기·CTA 클릭은 그대로 동작
+     · 이동한 위치는 sessionStorage에 저장되어 페이지 이동해도 유지 */
+  var promoDrag = doc.getElementById('promoDrag');
+  if (promoPopup && promoDrag) {
+    try {
+      if (window.sessionStorage) {
+        var savedPos = window.sessionStorage.getItem('promoPopupPos');
+        if (savedPos) {
+          var parts = savedPos.split(',');
+          if (parts.length === 2) {
+            var lx = parseInt(parts[0], 10), ly = parseInt(parts[1], 10);
+            if (!isNaN(lx) && !isNaN(ly)) {
+              promoPopup.style.left = lx + 'px';
+              promoPopup.style.top = ly + 'px';
+              promoPopup.style.right = 'auto';
+              promoPopup.style.bottom = 'auto';
+            }
+          }
+        }
+      }
+    } catch (eDrag0) {}
+
+    var isDragging = false, offsetX = 0, offsetY = 0;
+    function dragPoint(e) {
+      var t = (e.touches && e.touches[0]) ? e.touches[0] : e;
+      return { x: t.clientX, y: t.clientY };
+    }
+    function dragDown(e) {
+      isDragging = true;
+      var rect = promoPopup.getBoundingClientRect();
+      var p = dragPoint(e);
+      offsetX = p.x - rect.left;
+      offsetY = p.y - rect.top;
+      promoPopup.className = (promoPopup.className + ' promo-dragging').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+      if (e.preventDefault) e.preventDefault();
+    }
+    function dragMove(e) {
+      if (!isDragging) return;
+      var p = dragPoint(e);
+      var vw = window.innerWidth, vh = window.innerHeight;
+      var w = promoPopup.offsetWidth, h = promoPopup.offsetHeight;
+      var nl = p.x - offsetX, nt = p.y - offsetY;
+      if (nl < 0) nl = 0;
+      if (nt < 0) nt = 0;
+      if (nl + w > vw) nl = vw - w;
+      if (nt + h > vh) nt = vh - h;
+      promoPopup.style.left = nl + 'px';
+      promoPopup.style.top = nt + 'px';
+      promoPopup.style.right = 'auto';
+      promoPopup.style.bottom = 'auto';
+      if (e.preventDefault) e.preventDefault();
+    }
+    function dragUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      promoPopup.className = promoPopup.className.replace(/(\s|^)promo-dragging(\s|$)/, ' ').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+      try {
+        if (window.sessionStorage) {
+          var rect = promoPopup.getBoundingClientRect();
+          window.sessionStorage.setItem('promoPopupPos', Math.round(rect.left) + ',' + Math.round(rect.top));
+        }
+      } catch (eSave) {}
+    }
+    promoDrag.addEventListener('mousedown', dragDown, false);
+    doc.addEventListener('mousemove', dragMove, false);
+    doc.addEventListener('mouseup', dragUp, false);
+    promoDrag.addEventListener('touchstart', dragDown, false);
+    doc.addEventListener('touchmove', dragMove, false);
+    doc.addEventListener('touchend', dragUp, false);
+  }
 
 })();
 
