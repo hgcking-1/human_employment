@@ -577,6 +577,77 @@ ul { margin: 0; padding: 0; }
 .form-badge.badge-apply { background: #e6f7ec; color: #12864a; }
 
 /* ==========================================================================
+   채용 지원 — 알바몬 이동 안내 카드
+   ========================================================================== */
+.apply-intro {
+  padding: 4px 4px 20px;
+  border-bottom: 1px solid #f0f2f5;
+  margin-bottom: 22px;
+}
+.apply-intro h2 { font-size: 22px; margin-bottom: 6px; }
+.apply-intro p { font-size: 15px; color: #4a5764; margin: 0; }
+.apply-card {
+  display: block;
+  padding: 22px 24px;
+  margin-bottom: 14px;
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  text-decoration: none;
+  color: inherit;
+  -webkit-transition: border-color .15s, -webkit-box-shadow .15s;
+     -moz-transition: border-color .15s, box-shadow .15s;
+          transition: border-color .15s, box-shadow .15s;
+}
+.apply-card:hover {
+  border-color: #1a73e8;
+  -webkit-box-shadow: 0 8px 20px rgba(26,115,232,.10);
+          box-shadow: 0 8px 20px rgba(26,115,232,.10);
+}
+.apply-card:last-child { margin-bottom: 0; }
+.apply-card-head { margin-bottom: 6px; }
+.apply-card-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #16202b;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.apply-card-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #e8f0fe;
+  color: #0f57b8;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+.apply-card-badge.chaeum { background: #e6f7ec; color: #12864a; }
+.apply-card-lead {
+  color: #4a5764;
+  font-size: 14px;
+  margin: 0 0 14px;
+  line-height: 1.6;
+}
+.apply-card-cta {
+  color: #1a73e8;
+  font-size: 14px;
+  font-weight: bold;
+}
+.apply-card:hover .apply-card-cta { color: #0f57b8; }
+.apply-note {
+  margin-top: 22px;
+  padding: 16px 18px;
+  background: #f6f8fb;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #4a5764;
+  line-height: 1.7;
+}
+.apply-note b { color: #16202b; }
+
+/* ==========================================================================
    푸터
    ========================================================================== */
 .footer { background: #071b2e; color: #93a6ba; padding: 56px 0 28px; font-size: 14px; }
@@ -772,7 +843,7 @@ ul { margin: 0; padding: 0; }
         </button>
         <button type="button" class="contact-tab" id="tabApply" role="tab" aria-selected="false" aria-controls="panelApply" onclick="switchContactTab('apply')">
           🙋 채용 지원
-          <span class="tab-sub">구직자 지원서</span>
+          <span class="tab-sub">알바몬 진행중 공고</span>
         </button>
       </div>
 
@@ -842,85 +913,38 @@ ul { margin: 0; padding: 0; }
         </div>
       </div>
 
-      <!-- 구직자 지원 폼 -->
+      <!-- 구직자 지원 — 알바몬 이동 안내 -->
       <div class="contact-panel" id="panelApply" role="tabpanel" aria-labelledby="tabApply">
         <div class="contact-form-wrap">
-          <form class="form" id="applyForm" action="#" method="post">
-            <h2>채용 지원서 <span class="form-badge badge-apply">구직자</span></h2>
-            <p class="form-intro">지원자 정보와 희망 근무 조건을 남겨주시면 담당자가 개별 연락드립니다.</p>
+          <div class="apply-intro">
+            <h2>채용 지원 <span class="form-badge badge-apply">구직자</span></h2>
+            <p>현재 진행중인 채용 공고는 <b>알바몬</b>에서 관리됩니다. 아래에서 회사를 선택하시면 알바몬의 실시간 공고 페이지가 새 창으로 열립니다.</p>
+          </div>
 
-            <div class="row">
-              <div class="col col-2"><div class="form-row">
-                <label for="a-name">지원자 이름 <span class="req">*</span></label>
-                <input class="txt" type="text" id="a-name" name="name" placeholder="예) 홍길동">
-              </div></div>
-              <div class="col col-2"><div class="form-row">
-                <label for="a-birth">생년월일 <span class="req">*</span></label>
-                <input class="txt" type="text" id="a-birth" name="birth" placeholder="예) 1990-01-01">
-              </div></div>
+          <a class="apply-card" href="https://www.albamon.com/total-search?keyword=%ED%9C%B4%EB%A8%BC%EC%97%A0%EC%97%90%EC%8A%A4" target="_blank" rel="noopener noreferrer">
+            <div class="apply-card-head">
+              <span class="apply-card-name">휴먼엠에스</span>
+              <span class="apply-card-badge">근로자 파견 · 도급/용역</span>
             </div>
+            <p class="apply-card-lead">신촌연세의료원 · 강남세브란스 · 다보스병원 등 의료 · 사무 · 시설 관리 분야 채용 공고.</p>
+            <span class="apply-card-cta">알바몬에서 진행중인 공고 보기 →</span>
+          </a>
 
-            <div class="row">
-              <div class="col col-2"><div class="form-row">
-                <label for="a-phone">연락처 <span class="req">*</span></label>
-                <input class="txt" type="tel" id="a-phone" name="phone" placeholder="예) 010-0000-0000">
-              </div></div>
-              <div class="col col-2"><div class="form-row">
-                <label for="a-email">이메일 <span class="req">*</span></label>
-                <input class="txt" type="email" id="a-email" name="email" placeholder="예) name@email.com">
-              </div></div>
+          <a class="apply-card" href="https://www.albamon.com/total-search?keyword=%EC%B1%84%EC%9B%80%EC%84%9C%EB%B9%84%EC%8A%A4" target="_blank" rel="noopener noreferrer">
+            <div class="apply-card-head">
+              <span class="apply-card-name">채움서비스</span>
+              <span class="apply-card-badge chaeum">호텔 · 리조트 위생 관리</span>
             </div>
+            <p class="apply-card-lead">파크하얏트 · 웨스틴조선 · 소노벨 · 소노캄 · 롯데호텔 등 호텔 · 리조트 룸메이드 · 기물 · 런드리 채용 공고.</p>
+            <span class="apply-card-cta">알바몬에서 진행중인 공고 보기 →</span>
+          </a>
 
-            <div class="form-row">
-              <label for="a-position">희망 직무 <span class="req">*</span></label>
-              <select id="a-position" name="position">
-                <option value="">선택해 주세요</option>
-                <optgroup label="근로자 파견">
-                  <option>안내관리</option><option>시설관리</option><option>단순노무</option>
-                  <option>일반사무</option><option>수송관리</option>
-                </optgroup>
-                <optgroup label="도급 / 용역">
-                  <option>주차장관리</option><option>발렛 서비스</option>
-                  <option>일반 보안경비</option><option>건물 내 미화 환경관리</option>
-                </optgroup>
-                <option>기타 (직접 기재)</option>
-              </select>
-            </div>
-
-            <div class="row">
-              <div class="col col-2"><div class="form-row">
-                <label for="a-region">희망 근무 지역 <span class="req">*</span></label>
-                <input class="txt" type="text" id="a-region" name="region" placeholder="예) 서울 강북구 / 전 지역 가능">
-              </div></div>
-              <div class="col col-2"><div class="form-row">
-                <label for="a-start">희망 근무 시작일</label>
-                <input class="txt" type="text" id="a-start" name="start" placeholder="예) 즉시 가능 / 2026-05-01">
-              </div></div>
-            </div>
-
-            <div class="form-row">
-              <label for="a-career">경력 사항</label>
-              <textarea id="a-career" name="career" placeholder="관련 경력이 있으시면 회사명 · 기간 · 담당 업무를 간단히 적어주세요. 없으시면 &quot;신규 지원&quot; 이라고 적어주셔도 됩니다." style="height:110px;"></textarea>
-            </div>
-
-            <div class="form-row">
-              <label for="a-message">자기소개 · 지원 동기 <span class="req">*</span></label>
-              <textarea id="a-message" name="message" placeholder="지원 동기, 강점, 근무 가능 시간대 등 어필하고 싶은 내용을 자유롭게 적어주세요."></textarea>
-            </div>
-
-            <div class="form-row clearfix">
-              <div class="agree">
-                <input type="checkbox" id="a-agree" name="agree">
-                <span>개인정보 수집 및 이용에 동의합니다. 수집한 정보는 채용 전형 목적으로만 사용되며, 채용 절차 종료 후 관계법령에 따라 파기합니다.</span>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">지원서 보내기</button>
-
-            <div class="form-msg" id="formMsgApply">메일 작성 창이 열립니다. 내용을 확인하신 뒤 보내주세요.</div>
-
-            <p class="form-note">창이 열리지 않으면 <a href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a> 로 직접 보내주세요.</p>
-          </form>
+          <div class="apply-note">
+            <b>안내</b><br>
+            · 위 링크는 알바몬의 실시간 검색 결과로 연결되므로, <b>현재 모집중인 공고만</b> 표시됩니다.<br>
+            · 지원서 접수 · 서류 검토 · 면접 안내는 모두 알바몬을 통해 이뤄집니다.<br>
+            · 알바몬 공고에 없는 직무 문의는 <a href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a> 또는 <a href="tel:07041778985">070-4177-8985</a> 로 연락 부탁드립니다.
+          </div>
         </div>
       </div>
 
@@ -1110,55 +1134,9 @@ ul { margin: 0; padding: 0; }
     };
   }
 
-  /* ---------- 3-2. 채용 지원서 (구직자) ---------- */
-  var applyForm = doc.getElementById('applyForm');
-  if (applyForm) {
-    applyForm.onsubmit = function () {
-      var name     = val('a-name');
-      var birth    = val('a-birth');
-      var phone    = val('a-phone');
-      var email    = val('a-email');
-      var position = val('a-position');
-      var region   = val('a-region');
-      var start    = val('a-start');
-      var career   = val('a-career');
-      var message  = val('a-message');
-      var agree    = doc.getElementById('a-agree');
-
-      if (!name || !birth || !phone || !email || !position || !region || !message) {
-        alert('필수 항목을 모두 입력해 주세요.');
-        return false;
-      }
-      if (agree && !agree.checked) {
-        alert('개인정보 수집 및 이용에 동의해 주세요.');
-        return false;
-      }
-
-      var body = '[휴먼엠에스 채용 지원서]\r\n\r\n'
-               + '지원자: ' + name + '\r\n'
-               + '생년월일: ' + birth + '\r\n'
-               + '연락처: ' + phone + '\r\n'
-               + '이메일: ' + email + '\r\n'
-               + '희망 직무: ' + position + '\r\n'
-               + '희망 지역: ' + region + '\r\n'
-               + '근무 시작일: ' + (start || '(미기재)') + '\r\n\r\n'
-               + '경력 사항\r\n-------------------\r\n'
-               + (career || '(미기재)') + '\r\n\r\n'
-               + '자기소개 · 지원 동기\r\n-------------------\r\n'
-               + message;
-
-      var subject = '[채용 지원] ' + position + ' - ' + name;
-
-      var msg2 = doc.getElementById('formMsgApply');
-      if (msg2) { msg2.className = 'form-msg on'; }
-
-      window.location.href = 'mailto:hmms@humanms.co.kr'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
-
-      return false;
-    };
-  }
+  /* ---------- 3-2. 채용 지원 (알바몬 이동 안내) ----------
+     지원서 폼 대신 알바몬 실시간 공고로 이동하도록 변경.
+     지원 접수는 알바몬이 담당하므로 이 페이지에는 JS 로직 불필요. */
 
   /* ---------- 3-3. 사업주/구직자 탭 전환 (전역 함수) ---------- */
   window.switchContactTab = function (which) {
