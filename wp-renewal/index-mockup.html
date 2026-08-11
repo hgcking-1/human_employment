@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[리뉴얼 목업] 휴먼엠에스 | 신뢰할 수 있는 아웃소싱 파트너</title>
+<meta name="description" content="리뉴얼 방향 시각 목업 — WordPress 승인 후 Elementor JSON으로 변환 예정.">
+<style>
+/* ==========================================================================
+   휴먼엠에스 리뉴얼 목업 — 디자인 시스템
+   Colors: #0A1F33 (navy) | #C9A961 (gold) | #1E4D8B (accent blue) | #F8F5F0 (bone)
+   Type scale: 64 / 48 / 32 / 24 / 20 / 17 / 15 / 13 (px)
+   Space scale: 8 / 16 / 24 / 32 / 48 / 64 / 96 / 128 (px)
+   호환성 기준: 최신 Chrome/Edge/Safari + IE11 안전 문법 (var, grid, gap 미사용)
+   ========================================================================== */
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+html { font-size: 16px; }
+body {
+  margin: 0;
+  padding-top: 80px;
+  font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Nanum Gothic", sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #3d4756;
+  background: #ffffff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+img { max-width: 100%; height: auto; border: 0; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { margin: 0 0 16px; color: #0A1F33; line-height: 1.25; font-weight: 700; letter-spacing: -0.5px; }
+h1 { font-size: 56px; letter-spacing: -1.5px; }
+h2 { font-size: 40px; letter-spacing: -1px; }
+h3 { font-size: 24px; }
+h4 { font-size: 20px; }
+p  { margin: 0 0 18px; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+/* Layout tokens */
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 32px; }
+.wrap:after, .row:after, .clearfix:after { content: ""; display: block; clear: both; height: 0; visibility: hidden; }
+.row { margin-left: -16px; margin-right: -16px; }
+.col { float: left; padding-left: 16px; padding-right: 16px; }
+.col-2 { width: 50%; }
+.col-3 { width: 33.33%; }
+.col-4 { width: 25%; }
+
+.section { padding: 120px 0; }
+.section-alt { background: #F8F5F0; }
+.section-dark { background: #0A1F33; color: #c3d0e0; }
+.section-dark h2, .section-dark h3, .section-dark h4 { color: #ffffff; }
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: #C9A961; padding: 6px 14px; border: 1px solid #C9A961; border-radius: 999px;
+  margin-bottom: 24px;
+}
+.section-dark .eyebrow { color: #C9A961; border-color: #C9A961; }
+.section-head { max-width: 780px; margin-bottom: 72px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head p { font-size: 18px; color: #5b6674; margin-bottom: 0; }
+.section-dark .section-head p { color: #a9b8ca; }
+
+/* ----- 버튼 ----- */
+.btn {
+  display: inline-block; vertical-align: middle;
+  padding: 16px 32px; margin: 4px 6px 4px 0;
+  border: 2px solid transparent; border-radius: 4px;
+  font-size: 15px; line-height: 1.3; font-weight: 700; font-family: inherit;
+  text-align: center; cursor: pointer; letter-spacing: 0.3px;
+  background: none;
+  -webkit-transition: all .18s ease; transition: all .18s ease;
+}
+.btn-primary { background-color: #C9A961; color: #0A1F33; border-color: #C9A961; }
+.btn-primary:hover { background-color: #b8974a; border-color: #b8974a; }
+.btn-outline-light { border-color: rgba(255,255,255,.55); color: #ffffff; }
+.btn-outline-light:hover { background: #ffffff; color: #0A1F33; border-color: #ffffff; }
+.btn-outline-dark { border-color: #0A1F33; color: #0A1F33; }
+.btn-outline-dark:hover { background: #0A1F33; color: #ffffff; }
+.btn-sm { padding: 10px 18px; font-size: 13px; }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+.header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 80px; background: #ffffff;
+  border-bottom: 1px solid #eaeef4;
+}
+.header-inner { display: block; }
+.logo {
+  float: left; line-height: 80px; font-weight: 800; font-size: 20px; color: #0A1F33; letter-spacing: -0.5px;
+}
+.logo-mark { color: #0A1F33; }
+.logo-sub { color: #C9A961; margin-left: 8px; font-size: 11px; letter-spacing: 3px; font-weight: 600; }
+.nav { float: left; margin-left: 60px; }
+.nav li { float: left; margin-right: 4px; }
+.nav a {
+  display: block; padding: 0 18px; line-height: 80px;
+  font-size: 15px; font-weight: 600; color: #3d4756;
+  border-bottom: 3px solid transparent;
+  -webkit-transition: color .15s; transition: color .15s;
+}
+.nav a:hover, .nav a.active { color: #0A1F33; border-bottom-color: #C9A961; }
+.header-right { float: right; line-height: 80px; }
+.header-tel { font-size: 15px; font-weight: 700; color: #0A1F33; margin-right: 20px; }
+.header-tel small { color: #8794a5; font-weight: 500; margin-right: 6px; }
+.nav-toggle {
+  display: none; float: right; margin-top: 20px; width: 40px; height: 40px;
+  padding: 0; background: transparent; border: 1px solid #e2e6ee; border-radius: 4px;
+  cursor: pointer; position: relative;
+}
+.nav-toggle b {
+  display: block; position: absolute; left: 10px; right: 10px; height: 2px; background: #0A1F33;
+}
+.nav-toggle b:nth-child(1) { top: 13px; }
+.nav-toggle b:nth-child(2) { top: 19px; }
+.nav-toggle b:nth-child(3) { top: 25px; }
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  position: relative;
+  padding: 140px 0 160px;
+  background:
+    -webkit-linear-gradient(135deg, rgba(10,31,51,.92) 0%, rgba(10,31,51,.75) 55%, rgba(30,77,139,.60) 100%),
+            linear-gradient(135deg, rgba(10,31,51,.92) 0%, rgba(10,31,51,.75) 55%, rgba(30,77,139,.60) 100%);
+  color: #ffffff;
+  overflow: hidden;
+}
+.hero:before {
+  content: "";
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1600' height='900' viewBox='0 0 1600 900'><defs><pattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'><path d='M0 0h40v40H0z' fill='none'/><circle cx='1' cy='1' r='1' fill='rgba(255,255,255,0.05)'/></pattern></defs><rect width='1600' height='900' fill='url(%23p)'/></svg>") center/cover no-repeat;
+  z-index: 0; opacity: 0.6;
+}
+.hero .wrap { position: relative; z-index: 1; }
+.hero .hero-tag {
+  display: inline-block;
+  font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+  color: #C9A961; margin-bottom: 32px;
+}
+.hero h1 { color: #ffffff; font-size: 64px; letter-spacing: -2px; line-height: 1.15; margin-bottom: 28px; max-width: 900px; }
+.hero h1 .thin { display: block; font-weight: 300; font-size: 34px; color: #a9b8ca; margin-bottom: 8px; letter-spacing: -0.5px; }
+.hero-lead { max-width: 640px; font-size: 19px; line-height: 1.75; color: #c3d0e0; margin-bottom: 44px; }
+.hero-stats {
+  position: absolute; right: 32px; bottom: -60px; z-index: 2;
+  background: #ffffff; padding: 32px 40px; border-radius: 8px;
+  -webkit-box-shadow: 0 24px 60px rgba(10,31,51,0.25); box-shadow: 0 24px 60px rgba(10,31,51,0.25);
+  min-width: 380px;
+}
+.hero-stats h4 { color: #0A1F33; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; color: #C9A961; margin-bottom: 18px; font-weight: 700; }
+.hero-stat-item { padding: 10px 0; border-bottom: 1px solid #eef0f4; }
+.hero-stat-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.hero-stat-item strong { display: block; float: right; font-size: 20px; color: #0A1F33; font-weight: 700; }
+.hero-stat-item span { color: #5b6674; font-size: 14px; line-height: 1.5; padding-top: 4px; display: block; }
+
+/* ==========================================================================
+   3 PILLARS
+   ========================================================================== */
+.pillars-section { padding: 200px 0 120px; }
+.pillar {
+  padding: 44px 36px;
+  background: #ffffff;
+  border: 1px solid #eaeef4; border-radius: 8px;
+  -webkit-transition: all .25s; transition: all .25s;
+  height: 100%;
+  min-height: 340px;
+}
+.pillar:hover {
+  border-color: #C9A961;
+  -webkit-box-shadow: 0 20px 40px rgba(10,31,51,.10); box-shadow: 0 20px 40px rgba(10,31,51,.10);
+  -webkit-transform: translateY(-4px); transform: translateY(-4px);
+}
+.pillar-no {
+  display: inline-block;
+  font-size: 12px; font-weight: 800; color: #C9A961; letter-spacing: 4px;
+  padding: 4px 12px; border: 1px solid #C9A961; border-radius: 4px;
+  margin-bottom: 24px;
+}
+.pillar h3 { margin-bottom: 12px; }
+.pillar-sub { font-size: 13px; color: #8794a5; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 600; }
+.pillar p { color: #5b6674; margin: 0; font-size: 15px; }
+
+/* ==========================================================================
+   CORE VALUES
+   ========================================================================== */
+.values-section { padding: 120px 0; }
+.value {
+  padding: 40px 28px; text-align: center;
+  min-height: 240px;
+}
+.value-icon {
+  width: 64px; height: 64px; margin: 0 auto 24px;
+  border: 2px solid #C9A961; border-radius: 50%;
+  line-height: 60px; text-align: center;
+  color: #C9A961; font-size: 24px; font-weight: 700;
+}
+.value h4 { margin-bottom: 10px; }
+.value p { font-size: 14px; color: #5b6674; margin: 0; line-height: 1.6; }
+
+/* ==========================================================================
+   BUSINESS MODEL
+   ========================================================================== */
+.business-section { padding: 120px 0; background: #F8F5F0; }
+.biz-card {
+  padding: 56px 48px;
+  background: #ffffff;
+  border-radius: 8px;
+  min-height: 400px;
+  position: relative;
+  -webkit-transition: all .2s; transition: all .2s;
+}
+.biz-card:hover { -webkit-box-shadow: 0 24px 48px rgba(10,31,51,.10); box-shadow: 0 24px 48px rgba(10,31,51,.10); }
+.biz-badge {
+  position: absolute; top: 32px; right: 32px;
+  font-size: 11px; font-weight: 700; letter-spacing: 3px; color: #C9A961;
+}
+.biz-card h3 { margin-top: 16px; font-size: 28px; margin-bottom: 8px; }
+.biz-card .biz-sub { font-size: 13px; color: #8794a5; letter-spacing: 1px; margin-bottom: 24px; text-transform: uppercase; }
+.biz-card p { color: #5b6674; margin-bottom: 24px; }
+.biz-tags { margin: 24px 0 0; padding-top: 24px; border-top: 1px dashed #dfe4ec; }
+.biz-tag {
+  display: inline-block; padding: 6px 14px; margin: 3px 6px 3px 0;
+  font-size: 13px; color: #0A1F33; background: #F8F5F0; border-radius: 4px; font-weight: 600;
+}
+
+/* ==========================================================================
+   CLIENTS 리본
+   ========================================================================== */
+.clients-section { padding: 100px 0; }
+.clients-strip { position: relative; overflow: hidden; margin-top: 40px; }
+.clients-strip:before, .clients-strip:after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+}
+.clients-strip:before { left: 0; background: -webkit-linear-gradient(right, transparent, #ffffff); background: linear-gradient(to left, transparent, #ffffff); }
+.clients-strip:after { right: 0; background: -webkit-linear-gradient(left, transparent, #ffffff); background: linear-gradient(to right, transparent, #ffffff); }
+.clients-row { text-align: center; }
+.client-item {
+  display: inline-block; width: 12.5%; vertical-align: middle; padding: 20px 24px;
+}
+.client-item img { max-height: 44px; width: auto; margin: 0 auto; opacity: 0.6; filter: grayscale(1); -webkit-filter: grayscale(1); }
+.client-item img:hover { opacity: 1; filter: grayscale(0); -webkit-filter: grayscale(0); }
+
+/* ==========================================================================
+   RECRUITMENT — 채용 강조 섹션
+   ========================================================================== */
+.recruit-section {
+  position: relative; padding: 120px 0;
+  background:
+    -webkit-linear-gradient(135deg, #0A1F33 0%, #1E4D8B 100%),
+            linear-gradient(135deg, #0A1F33 0%, #1E4D8B 100%);
+  color: #ffffff;
+}
+.recruit-section h2 { color: #ffffff; }
+.recruit-card {
+  background: #ffffff; color: #0A1F33; padding: 36px 32px; border-radius: 8px;
+  position: relative;
+  -webkit-transition: -webkit-transform .2s; transition: transform .2s;
+}
+.recruit-card:hover { -webkit-transform: translateY(-4px); transform: translateY(-4px); }
+.recruit-poster {
+  position: relative; overflow: hidden;
+  border-radius: 8px;
+  -webkit-box-shadow: 0 24px 48px rgba(0,0,0,.35); box-shadow: 0 24px 48px rgba(0,0,0,.35);
+}
+.recruit-poster img { display: block; width: 100%; height: auto; }
+.recruit-poster .poster-overlay {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 24px 20px;
+  background: -webkit-linear-gradient(top, transparent, rgba(10,31,51,.85)); background: linear-gradient(to top, rgba(10,31,51,.85), transparent);
+  color: #ffffff;
+}
+.recruit-poster .poster-overlay strong { display: block; font-size: 15px; margin-bottom: 4px; }
+.recruit-poster .poster-overlay span { font-size: 13px; color: #C9A961; letter-spacing: 1px; }
+.recruit-info { padding-left: 40px; }
+.recruit-info h3 { color: #ffffff; font-size: 32px; margin-bottom: 12px; }
+.recruit-info .eyebrow { color: #C9A961; border-color: #C9A961; }
+.recruit-info p { color: #c3d0e0; font-size: 16px; margin-bottom: 12px; }
+.recruit-tags { margin: 24px 0 32px; padding: 0; }
+.recruit-tag {
+  display: inline-block; padding: 6px 14px; margin: 3px 6px 3px 0;
+  font-size: 13px; font-weight: 600; color: #C9A961;
+  border: 1px solid rgba(201,169,97,.4); border-radius: 4px;
+}
+
+/* ==========================================================================
+   CEO MESSAGE
+   ========================================================================== */
+.ceo-section { padding: 120px 0; }
+.ceo-side { float: left; width: 40%; padding-right: 48px; }
+.ceo-body { float: left; width: 60%; }
+.ceo-card {
+  padding: 40px 32px; background: #0A1F33; color: #a9b8ca; border-radius: 8px;
+  border-left: 4px solid #C9A961;
+}
+.ceo-card h4 { color: #ffffff; font-size: 22px; margin-bottom: 8px; }
+.ceo-card .ceo-title { color: #C9A961; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 24px; font-weight: 700; }
+.ceo-card p { color: #a9b8ca; font-size: 14px; margin: 0; }
+.ceo-body p { font-size: 17px; line-height: 1.85; color: #3d4756; margin-bottom: 18px; }
+.ceo-body p b { color: #0A1F33; }
+
+/* ==========================================================================
+   CTA FOOTER
+   ========================================================================== */
+.cta-section {
+  padding: 100px 0; background: #0A1F33; color: #ffffff; text-align: center;
+}
+.cta-section h2 { color: #ffffff; font-size: 44px; margin-bottom: 16px; }
+.cta-section p { font-size: 18px; color: #a9b8ca; margin-bottom: 36px; }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer { padding: 72px 0 32px; background: #05141f; color: #6a7f96; font-size: 14px; }
+.footer h4 { color: #ffffff; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; font-weight: 700; }
+.footer .f-col-1 { float: left; width: 40%; padding-right: 32px; }
+.footer .f-col-2 { float: left; width: 30%; padding-right: 24px; }
+.footer .f-col-3 { float: left; width: 30%; }
+.footer-logo { font-size: 24px; font-weight: 800; color: #ffffff; margin-bottom: 12px; letter-spacing: -0.5px; }
+.footer-logo span { color: #C9A961; }
+.footer p { margin-bottom: 10px; line-height: 1.7; }
+.footer ul li { margin-bottom: 10px; }
+.footer ul a { color: #a9b8ca; }
+.footer ul a:hover { color: #ffffff; }
+.footer-copy { padding-top: 32px; margin-top: 40px; border-top: 1px solid #1a2b3c; color: #4a5f76; font-size: 13px; text-align: center; }
+
+/* ==========================================================================
+   MOCKUP RIBBON — 이 페이지가 목업임을 시각적으로 알림
+   ========================================================================== */
+.mockup-ribbon {
+  position: fixed; top: 84px; left: 0;
+  padding: 8px 16px 8px 12px;
+  background: #C9A961; color: #0A1F33;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  z-index: 200;
+  -webkit-box-shadow: 0 4px 12px rgba(0,0,0,.15); box-shadow: 0 4px 12px rgba(0,0,0,.15);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+  h1 { font-size: 44px; letter-spacing: -1px; }
+  h2 { font-size: 32px; }
+  .hero { padding: 100px 0 120px; }
+  .hero h1 { font-size: 48px; }
+  .hero h1 .thin { font-size: 26px; }
+  .hero-stats { position: static; margin-top: 40px; min-width: 0; }
+  .pillars-section { padding: 120px 0; }
+  .col-3 { width: 100%; margin-bottom: 20px; }
+  .col-4 { width: 50%; margin-bottom: 20px; }
+  .ceo-side, .ceo-body { float: none; width: 100%; padding: 0; }
+  .ceo-side { margin-bottom: 32px; }
+  .recruit-info { padding-left: 0; padding-top: 40px; }
+  .biz-card { margin-bottom: 20px; min-height: 0; }
+  .section { padding: 80px 0; }
+  .section-head { margin-bottom: 48px; }
+}
+@media screen and (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .header-tel { display: none; }
+  .nav { display: none; float: none; margin: 0; position: absolute; top: 80px; left: 0; right: 0; background: #ffffff; border-bottom: 1px solid #eaeef4; padding: 0 24px 16px; }
+  .nav.open { display: block; }
+  .nav li { float: none; margin: 0; }
+  .nav a { line-height: 1.5; padding: 16px 0; border-bottom: 1px solid #eaeef4; }
+}
+@media screen and (max-width: 720px) {
+  body { padding-top: 64px; }
+  .header, .nav { top: 0; }
+  .header { height: 64px; }
+  .logo, .header-right { line-height: 64px; }
+  .nav-toggle { margin-top: 12px; }
+  .nav { top: 64px; }
+  .wrap { padding: 0 20px; }
+  h1 { font-size: 32px; }
+  h2 { font-size: 26px; }
+  .hero { padding: 72px 0 96px; }
+  .hero h1 { font-size: 34px; letter-spacing: -0.5px; }
+  .hero h1 .thin { font-size: 20px; }
+  .hero-lead { font-size: 16px; }
+  .col-4 { width: 100%; }
+  .btn { display: block; margin: 0 0 10px; }
+  .btn-inline { display: inline-block; }
+  .mockup-ribbon { top: 68px; font-size: 10px; padding: 6px 12px; }
+  /* 푸터 3열을 모바일에서 세로 스택 (이메일 주소 오버플로우 방지) */
+  .footer .f-col-1, .footer .f-col-2, .footer .f-col-3 {
+    float: none; width: 100%; padding: 0 0 32px 0;
+  }
+  .footer .f-col-3 { padding-bottom: 0; }
+  /* 클라이언트 로고 리본 — 작은 화면에서 항목당 넓게 */
+  .client-item { width: 33.33%; padding: 12px 16px; }
+  /* 히어로 stats 카드 좌우 정렬 여유 확보 */
+  .hero-stats { padding: 24px 20px; }
+  .hero-stat-item strong { font-size: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="mockup-ribbon">📋 리뉴얼 목업 v1</div>
+
+<!-- ===================== HEADER ===================== -->
+<div class="header">
+  <div class="wrap header-inner clearfix">
+    <a class="logo" href="#top">
+      <span class="logo-mark">휴먼엠에스</span>
+      <span class="logo-sub">HUMAN MS</span>
+    </a>
+    <ul class="nav" id="nav">
+      <li><a href="#" class="active">HOME</a></li>
+      <li><a href="#company">회사소개</a></li>
+      <li><a href="#business">사업소개</a></li>
+      <li><a href="#recruit">채용</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <div class="header-right">
+      <span class="header-tel"><small>TEL</small>070-4177-8985</span>
+      <a class="btn btn-primary btn-sm" href="#contact">서비스 문의</a>
+    </div>
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+      <b></b><b></b><b></b>
+    </button>
+  </div>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<div class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-tag">EMPOWERING TALENT · ELEVATING ENTERPRISES</span>
+    <h1>
+      <span class="thin">고객의 니즈를 실현하는</span>
+      신뢰할 수 있는<br>
+      아웃소싱 파트너
+    </h1>
+    <p class="hero-lead">
+      2016년 창립 이래, 근로자 파견업과 도급·용역업 분야에서 쌓아온 현장관리 경험과<br>
+      체계화된 내부 시스템으로 고객 기업에 꼭 맞는 인재 솔루션을 제공합니다.
+    </p>
+    <a class="btn btn-primary btn-inline" href="#business">사업소개 둘러보기</a>
+    <a class="btn btn-outline-light btn-inline" href="#contact">서비스 문의하기 →</a>
+
+    <div class="hero-stats">
+      <h4>Human MS at a Glance</h4>
+      <div class="hero-stat-item clearfix"><strong>10년+</strong><span>회사 업력</span></div>
+      <div class="hero-stat-item clearfix"><strong>3대 부문</strong><span>파견 · 도급 · 용역</span></div>
+      <div class="hero-stat-item clearfix"><strong>정부 인허가</strong><span>파견 · 경비 · 위생 3종 취득</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 3 PILLARS ===================== -->
+<div class="pillars-section">
+  <div class="wrap">
+    <div class="row">
+      <div class="col col-3"><div class="pillar">
+        <span class="pillar-no">01</span>
+        <div class="pillar-sub">TAILORED TALENT SOLUTIONS</div>
+        <h3>맞춤형 인재 솔루션</h3>
+        <p>업종과 현장 특성을 먼저 파악하고, 필요한 직무에 적합한 인력을 선별해 배치합니다. 채용부터 배치, 근태·노무 관리까지 원스톱으로 지원합니다.</p>
+      </div></div>
+      <div class="col col-3"><div class="pillar">
+        <span class="pillar-no">02</span>
+        <div class="pillar-sub">EMPOWERING TALENT FOR TOMORROW</div>
+        <h3>인재 양성</h3>
+        <p>배치로 끝나지 않습니다. 직무 교육·현장 관리·성장 지원으로 함께 발전하는 인력을 길러냅니다. 근로자와 고객 모두가 만족하는 파트너십을 지향합니다.</p>
+      </div></div>
+      <div class="col col-3"><div class="pillar">
+        <span class="pillar-no">03</span>
+        <div class="pillar-sub">RELIABLE SERVICE EXCELLENCE</div>
+        <h3>안정적 고품질 서비스</h3>
+        <p>체계화된 내부 시스템과 현장 관리 체계로 흔들림 없는 서비스 품질을 유지합니다. 지난 10년의 신뢰가 곧 휴먼엠에스의 자산입니다.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CORE VALUES ===================== -->
+<div class="values-section section-alt">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">CORE VALUES</span>
+      <h2>휴먼엠에스가 지키는 네 가지</h2>
+      <p>사람을 다루는 일이기에, 원칙을 먼저 세웁니다.</p>
+    </div>
+    <div class="row">
+      <div class="col col-4"><div class="value">
+        <div class="value-icon">01</div>
+        <h4>신뢰 · 정직</h4>
+        <p>약속한 것을 지키고,<br>있는 그대로 알립니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value">
+        <div class="value-icon">02</div>
+        <h4>지속 성장</h4>
+        <p>어제보다 나은 오늘을 위해<br>멈추지 않습니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value">
+        <div class="value-icon">03</div>
+        <h4>고객 만족</h4>
+        <p>고객의 현장을<br>내 현장처럼 살핍니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value">
+        <div class="value-icon">04</div>
+        <h4>안전 · 윤리</h4>
+        <p>안전이 최우선,<br>원칙에서 벗어나지 않습니다.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== BUSINESS MODEL ===================== -->
+<div class="business-section" id="business">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">BUSINESS MODEL</span>
+      <h2>두 개의 축으로 현장을 운영합니다</h2>
+      <p>휴먼엠에스는 근로자 파견과 도급·용역 두 부문에서 축적된 경험을 기반으로 최적의 서비스를 제공합니다.</p>
+    </div>
+    <div class="row">
+      <div class="col col-2"><div class="biz-card">
+        <span class="biz-badge">BUSINESS 01</span>
+        <div class="biz-sub">Worker Dispatch</div>
+        <h3>근로자 파견업</h3>
+        <p>필요한 시점에 적합한 인력을 빠르게 연결하고, 채용부터 근태·노무·교육까지 관리 부담을 덜어드립니다.</p>
+        <div class="biz-tags">
+          <span class="biz-tag">안내관리</span>
+          <span class="biz-tag">시설관리</span>
+          <span class="biz-tag">단순노무</span>
+          <span class="biz-tag">일반사무</span>
+          <span class="biz-tag">수송관리</span>
+        </div>
+      </div></div>
+      <div class="col col-2"><div class="biz-card">
+        <span class="biz-badge">BUSINESS 02</span>
+        <div class="biz-sub">Contract Services</div>
+        <h3>도급 / 용역업</h3>
+        <p>업무 전 과정을 위탁 운영하여 관리 비용을 줄이고, 건물과 시설의 가치를 지켜냅니다.</p>
+        <div class="biz-tags">
+          <span class="biz-tag">주차장 관리</span>
+          <span class="biz-tag">발렛 서비스</span>
+          <span class="biz-tag">일반 보안경비</span>
+          <span class="biz-tag">건물 내 미화 환경관리</span>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CLIENTS ===================== -->
+<div class="clients-section">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">OUR CLIENTS</span>
+      <h2>함께해 온 파트너들</h2>
+      <p>의료 · 호텔 · 공공기관 · 문화시설 등 다양한 업종에서 신뢰받는 파트너로 함께합니다.</p>
+    </div>
+    <div class="clients-strip">
+      <div class="clients-row">
+        <div class="client-item"><img src="../images/logos/logo-01.png" alt="Client 1"></div>
+        <div class="client-item"><img src="../images/logos/logo-02.png" alt="Client 2"></div>
+        <div class="client-item"><img src="../images/logos/logo-03.png" alt="Client 3"></div>
+        <div class="client-item"><img src="../images/logos/logo-04.png" alt="Client 4"></div>
+        <div class="client-item"><img src="../images/logos/logo-05.png" alt="Client 5"></div>
+        <div class="client-item"><img src="../images/logos/logo-06.png" alt="Client 6"></div>
+        <div class="client-item"><img src="../images/logos/logo-07.png" alt="Client 7"></div>
+        <div class="client-item"><img src="../images/logos/logo-08.png" alt="Client 8"></div>
+      </div>
+      <div class="clients-row">
+        <div class="client-item"><img src="../images/logos/logo-09.png" alt="Client 9"></div>
+        <div class="client-item"><img src="../images/logos/logo-10.png" alt="Client 10"></div>
+        <div class="client-item"><img src="../images/logos/logo-11.png" alt="Client 11"></div>
+        <div class="client-item"><img src="../images/logos/logo-12.png" alt="Client 12"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== RECRUITMENT ===================== -->
+<div class="recruit-section" id="recruit">
+  <div class="wrap">
+    <div class="row">
+      <div class="col col-2">
+        <div class="recruit-poster">
+          <img src="../images/housekeeping-recruit.jpg" alt="채움서비스 호텔 하우스키핑 인력 모집">
+          <div class="poster-overlay">
+            <strong>호텔 하우스키핑 인력 모집</strong>
+            <span>NOW HIRING · 채움서비스</span>
+          </div>
+        </div>
+      </div>
+      <div class="col col-2">
+        <div class="recruit-info">
+          <span class="eyebrow">RECRUITMENT</span>
+          <h3>지금, 함께 일할<br>동료를 찾습니다</h3>
+          <p>안정적인 근무 환경, 체계적인 관리, 신뢰할 수 있는 아웃소싱 파트너 — 휴먼엠에스와 채움서비스는 성실함과 책임감을 갖춘 분들의 많은 지원을 기다리고 있습니다.</p>
+          <div class="recruit-tags">
+            <span class="recruit-tag">호텔 룸메이드</span>
+            <span class="recruit-tag">시설 관리</span>
+            <span class="recruit-tag">주차 · 발렛</span>
+            <span class="recruit-tag">경비 · 보안</span>
+            <span class="recruit-tag">단순 노무</span>
+          </div>
+          <a class="btn btn-primary btn-inline" href="#contact">지원서 작성하러 가기 →</a>
+          <a class="btn btn-outline-light btn-inline" href="https://www.albamon.com/total-search?keyword=%ED%9C%B4%EB%A8%BC%EC%97%A0%EC%97%90%EC%8A%A4" target="_blank" rel="noopener noreferrer">알바몬에서 공고 보기</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CEO MESSAGE ===================== -->
+<div class="ceo-section" id="company">
+  <div class="wrap">
+    <div class="section-head center">
+      <span class="eyebrow">CEO MESSAGE</span>
+      <h2>사람을 소중히,<br>고객을 든든히</h2>
+      <p>2016년 창립 이래, 인재 존중과 고객 신뢰를 바탕으로 성장해 온 휴먼엠에스의 이야기입니다.</p>
+    </div>
+    <div class="clearfix">
+      <div class="ceo-side">
+        <div class="ceo-card">
+          <h4>이경미</h4>
+          <div class="ceo-title">CEO · 대표이사</div>
+          <p>2016년 (주)휴먼엠에스 설립.<br>10년간 아웃소싱 서비스업을 이끌며 근로자 파견·경비·위생 3부문 정부 인허가를 취득.</p>
+        </div>
+      </div>
+      <div class="ceo-body">
+        <p>안녕하십니까. 휴먼엠에스를 찾아주신 여러분께 진심으로 감사드립니다.</p>
+        <p>2016년 창립 이래 어느덧 10년, 저희 휴먼엠에스는 <b>인재 존중과 고객의 신뢰</b>를 바탕으로 다양한 업종에서 성공적인 아웃소싱 서비스를 제공하며 꾸준히 성장해 왔습니다.</p>
+        <p>오늘날처럼 급변하는 비즈니스 환경 속에서 기업의 경쟁력을 높이기 위해서는 효율적이고 전문적인 아웃소싱 파트너가 무엇보다 중요합니다. 휴먼엠에스는 그동안 축적한 전문성과 한 사람 한 사람을 소중히 여기는 마음으로, <b>고객 여러분의 든든한 동반자</b>가 되겠습니다.</p>
+        <p>항상 저희를 믿고 함께해 주시는 모든 고객님께 다시 한번 깊이 감사드리며, 더 나은 내일을 향해 한결같은 마음으로 함께 나아가겠습니다.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CTA FOOTER ===================== -->
+<div class="cta-section" id="contact">
+  <div class="wrap">
+    <span class="eyebrow" style="border-color:#C9A961; color:#C9A961;">GET IN TOUCH</span>
+    <h2>현장을 알려주시면<br>가장 적합한 운영 방식을 제안합니다</h2>
+    <p>전화 · 이메일 · 문의 양식 어느 쪽이든 편하신 방법으로 연락 주세요.<br>업무시간 내 접수된 문의는 담당자가 빠르게 확인합니다.</p>
+    <a class="btn btn-primary btn-inline" href="tel:07041778985">070-4177-8985</a>
+    <a class="btn btn-outline-light btn-inline" href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a>
+  </div>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<div class="footer">
+  <div class="wrap clearfix">
+    <div class="f-col-1">
+      <div class="footer-logo">휴먼엠에스<span>.</span></div>
+      <p>EMPOWERING TALENT,<br>ELEVATING ENTERPRISES.</p>
+      <p>서울특별시 강북구 도봉로 328, 1919호<br>대표이사 이경미 · 법인등록 110111-6296069</p>
+    </div>
+    <div class="f-col-2">
+      <h4>SITE MAP</h4>
+      <ul>
+        <li><a href="#top">HOME</a></li>
+        <li><a href="#company">회사소개</a></li>
+        <li><a href="#business">사업소개</a></li>
+        <li><a href="#recruit">채용</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+      </ul>
+    </div>
+    <div class="f-col-3">
+      <h4>CONTACT</h4>
+      <p>070-4177-8985<br>
+      <a href="mailto:hmms@humanms.co.kr" style="color:#C9A961;">hmms@humanms.co.kr</a></p>
+      <p style="color:#6a7f96;">월요일 - 금요일<br>09:00 - 18:00</p>
+    </div>
+    <div class="footer-copy">© <span id="year">2026</span>. HUMAN MS All rights reserved.</div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var doc = document;
+  var toggle = doc.getElementById('navToggle');
+  var nav = doc.getElementById('nav');
+  if (toggle && nav) {
+    toggle.onclick = function () {
+      var isOpen = nav.className.indexOf('open') > -1;
+      nav.className = isOpen ? 'nav' : 'nav open';
+      return false;
+    };
+    var navLinks = nav.getElementsByTagName('a');
+    for (var i = 0; i < navLinks.length; i++) {
+      navLinks[i].onclick = function () { nav.className = 'nav'; };
+    }
+  }
+  var yearEl = doc.getElementById('year');
+  if (yearEl) { yearEl.innerHTML = String(new Date().getFullYear()); }
+})();
+</script>
+</body>
+</html>
