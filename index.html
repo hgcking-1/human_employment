@@ -1344,28 +1344,20 @@ ul { margin: 0; padding: 0; }
   if (yearEl) { yearEl.innerHTML = String(new Date().getFullYear()); }
 
   /* ---------- 5. 플로팅 채용 광고 팝업 ----------
-     sessionStorage에 닫힘 상태 저장 → 같은 세션에서는 다시 안 뜸.
-     새 탭·새 세션 시 재출현. iOS Private mode 등에서 storage 예외 처리. */
+     매 새로고침마다 팝업 새로 뜨도록 sessionStorage 저장 사용 안 함.
+     닫기 버튼은 현재 페이지에서만 팝업 숨김. 새로고침·페이지 이동 시 재출현. */
   var promoPopup = doc.getElementById('promoPopup');
   if (promoPopup) {
-    var promoClosed = false;
-    try {
-      if (window.sessionStorage && window.sessionStorage.getItem('promoPopupClosed') === '1') {
-        promoClosed = true;
-      }
-    } catch (ePromo) { /* storage 접근 불가 시 그냥 표시 */ }
-    if (!promoClosed) {
-      promoPopup.className = promoPopup.className.replace(/(^|\s)promo-hidden(\s|$)/, ' ').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
-    }
+    // 페이지 로드 시 항상 표시 (이전 버전이 남긴 저장값 정리)
+    try { if (window.sessionStorage) window.sessionStorage.removeItem('promoPopupClosed'); } catch (ePromoClean) {}
+    promoPopup.className = promoPopup.className.replace(/(^|\s)promo-hidden(\s|$)/, ' ').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
   }
   window.closePromoPopup = function () {
     var el = doc.getElementById('promoPopup');
     if (el && el.className.indexOf('promo-hidden') === -1) {
       el.className = (el.className + ' promo-hidden').replace(/^\s+|\s+$/g, '');
     }
-    try {
-      if (window.sessionStorage) { window.sessionStorage.setItem('promoPopupClosed', '1'); }
-    } catch (ePromo2) {}
+    /* sessionStorage 저장 안 함 → 새로고침 시 팝업 다시 표시됨 */
   };
 
   /* ---------- 5-b. 팝업 드래그 이동 (상단 핸들) ----------
