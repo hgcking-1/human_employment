@@ -681,11 +681,8 @@ ul { margin: 0; padding: 0; }
 .promo-close:hover { background: rgba(0,0,0,0.95); }
 .promo-close:focus { outline: 2px solid #ffffff; outline-offset: -2px; }
 .promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; margin-top: 26px; }
-.promo-link img {
-  display: block; width: 100%;
-  height: 260px;
-  object-fit: cover; object-position: top center;
-}
+/* 이미지 전체가 보이도록 자연 비율로 표시 (crop 없음) */
+.promo-link img { display: block; width: 100%; height: auto; }
 .promo-cta {
   display: block;
   padding: 10px 12px;
@@ -697,14 +694,13 @@ ul { margin: 0; padding: 0; }
   letter-spacing: -0.3px;
 }
 .promo-link:hover .promo-cta { background: #0f57b8; }
-/* 모바일: 폭·이미지·핸들 축소 (콘텐츠 침범 최소화) */
+/* 모바일: 폭·핸들만 축소 (이미지는 자연 비율로 전체 노출) */
 @media screen and (max-width: 640px) {
   .promo-popup { top: 76px; right: 10px; width: 160px; }
   .promo-drag { height: 22px; right: 32px; line-height: 22px; font-size: 10px; }
   .promo-drag:before { content: "⋮⋮ 이동 ⋮⋮"; }
   .promo-close { width: 32px; height: 22px; font-size: 16px; line-height: 20px; }
   .promo-link { margin-top: 22px; }
-  .promo-link img { height: 180px; }
   .promo-cta { padding: 8px 6px; font-size: 12px; }
 }
 
