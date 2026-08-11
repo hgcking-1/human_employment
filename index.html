@@ -416,6 +416,103 @@ ul { margin: 0; padding: 0; }
 .job-go { display: block; font-size: 14px; font-weight: bold; color: #1a73e8; }
 
 /* ==========================================================================
+   진행 중인 채용 — 회사별 2카드 (휴먼엠에스 파랑 / 채움서비스 초록)
+   ========================================================================== */
+.hms-recruit-eyebrow {
+  display: inline-block; padding: 6px 16px; border-radius: 999px;
+  background: #1a73e8;
+  background: -webkit-linear-gradient(left, #1a73e8 0%, #12864a 100%);
+  background:         linear-gradient(90deg, #1a73e8 0%, #12864a 100%);
+  color: #ffffff; font-size: 12px; font-weight: 800; letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+.hms-recruit-grid {
+  display: -webkit-box; display: -webkit-flex; display: -ms-flexbox; display: flex;
+  -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap;
+  margin: 0 -12px;
+}
+.hms-recruit-card {
+  -webkit-flex: 1 1 320px; -ms-flex: 1 1 320px; flex: 1 1 320px;
+  display: block; position: relative; margin: 12px;
+  background: #ffffff; border: 2px solid #e3e8ee; border-radius: 20px;
+  padding: 40px 32px 32px; text-decoration: none; color: inherit; overflow: hidden;
+  -webkit-transition: -webkit-transform .25s, border-color .25s, -webkit-box-shadow .25s;
+          transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+.hms-recruit-card:before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: #1a73e8;
+  background: -webkit-linear-gradient(left, #1a73e8, #4faaff);
+  background:         linear-gradient(90deg, #1a73e8, #4faaff);
+}
+.hms-recruit-card:hover {
+  -webkit-transform: translateY(-6px); transform: translateY(-6px);
+  border-color: #1a73e8;
+  -webkit-box-shadow: 0 20px 40px rgba(13,43,69,0.12);
+          box-shadow: 0 20px 40px rgba(13,43,69,0.12);
+}
+.hms-recruit-card.hms-chaeum:before {
+  background: #12864a;
+  background: -webkit-linear-gradient(left, #12864a, #4fb87a);
+  background:         linear-gradient(90deg, #12864a, #4fb87a);
+}
+.hms-recruit-card.hms-chaeum:hover { border-color: #12864a; }
+.hms-card-corner {
+  position: absolute; top: 16px; right: 20px;
+  font-size: 56px; opacity: 0.08; line-height: 1; pointer-events: none;
+}
+.hms-recruit-card.hms-chaeum .hms-card-corner { color: #12864a; }
+.hms-recruit-card.hms-human .hms-card-corner { color: #1a73e8; }
+.hms-card-head { margin-bottom: 16px; }
+.hms-card-head:after { content: ""; display: block; clear: both; }
+.hms-card-name {
+  display: inline-block; vertical-align: middle; margin-right: 10px;
+  font-size: 26px; font-weight: 800; color: #0d2b45; letter-spacing: -0.5px;
+}
+.hms-card-badge {
+  display: inline-block; vertical-align: middle;
+  padding: 6px 14px; border-radius: 999px;
+  background: #eaf2ff; color: #1a73e8;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.3px;
+}
+.hms-recruit-card.hms-chaeum .hms-card-badge { background: #e6f7ec; color: #12864a; }
+.hms-card-desc { font-size: 15px; color: #4a5764; line-height: 1.7; margin: 0 0 24px; }
+.hms-card-tags { margin: 0 -3px 28px; }
+.hms-card-tag {
+  display: inline-block; margin: 3px; padding: 4px 10px; border-radius: 4px;
+  background: #f4f7fb; color: #4a5764; font-size: 12px; font-weight: 600;
+}
+.hms-card-cta {
+  display: inline-block; vertical-align: middle; padding: 14px 24px;
+  background: #1a73e8;
+  background: -webkit-linear-gradient(left, #1a73e8, #4faaff);
+  background:         linear-gradient(90deg, #1a73e8, #4faaff);
+  color: #ffffff; border-radius: 999px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.3px;
+  -webkit-box-shadow: 0 8px 20px rgba(26,115,232,0.25);
+          box-shadow: 0 8px 20px rgba(26,115,232,0.25);
+  -webkit-transition: -webkit-transform .2s; transition: transform .2s;
+}
+.hms-recruit-card.hms-chaeum .hms-card-cta {
+  background: #12864a;
+  background: -webkit-linear-gradient(left, #12864a, #4fb87a);
+  background:         linear-gradient(90deg, #12864a, #4fb87a);
+  -webkit-box-shadow: 0 8px 20px rgba(18,134,74,0.25);
+          box-shadow: 0 8px 20px rgba(18,134,74,0.25);
+}
+.hms-recruit-card:hover .hms-card-cta { -webkit-transform: translateX(4px); transform: translateX(4px); }
+.hms-card-cta .hms-arrow { display: inline-block; margin-left: 6px; -webkit-transition: -webkit-transform .2s; transition: transform .2s; }
+.hms-recruit-card:hover .hms-card-cta .hms-arrow { -webkit-transform: translateX(4px); transform: translateX(4px); }
+.hms-recruit-note {
+  margin-top: 32px; padding: 20px 24px;
+  background: #f8fafc; border-left: 4px solid #1a73e8; border-radius: 8px;
+  font-size: 13px; color: #4a5764; line-height: 1.7;
+}
+.hms-recruit-note b { color: #0d2b45; }
+.hms-recruit-note a { color: #1a73e8; font-weight: 700; text-decoration: none; }
+.hms-recruit-note a:hover { text-decoration: underline; }
+
+/* ==========================================================================
    고객사
    ========================================================================== */
 .client {
@@ -954,49 +1051,54 @@ ul { margin: 0; padding: 0; }
 <div class="section">
   <div class="wrap">
     <div class="section-head center reveal">
-      <span class="eyebrow">Recruit</span>
+      <span class="hms-recruit-eyebrow">RECRUITMENT</span>
       <h2>진행 중인 채용</h2>
-      <p>휴먼엠에스와 함께 일할 분을 모십니다. 공고를 누르면 알바몬 지원 페이지로 이동합니다.</p>
+      <p>휴먼엠에스와 함께 일할 분을 모십니다. 아래에서 회사를 선택하시면 알바몬의 실시간 공고 페이지로 이동합니다.</p>
     </div>
 
-    <div class="row">
-      <div class="col col-4">
-        <a class="job" href="https://www.albamon.com/" target="_blank" rel="noopener">
-          <span class="job-area">모집 지역</span>
-          <span class="job-title">채용 공고 제목이 들어갈 자리입니다</span>
-          <span class="job-cond">급여 &middot; 근무일 조건</span>
-          <span class="job-go">알바몬에서 지원하기 &rarr;</span>
-        </a>
-      </div>
-      <div class="col col-4">
-        <a class="job" href="https://www.albamon.com/" target="_blank" rel="noopener">
-          <span class="job-area">모집 지역</span>
-          <span class="job-title">채용 공고 제목이 들어갈 자리입니다</span>
-          <span class="job-cond">급여 &middot; 근무일 조건</span>
-          <span class="job-go">알바몬에서 지원하기 &rarr;</span>
-        </a>
-      </div>
-      <div class="col col-4">
-        <a class="job" href="https://www.albamon.com/" target="_blank" rel="noopener">
-          <span class="job-area">모집 지역</span>
-          <span class="job-title">채용 공고 제목이 들어갈 자리입니다</span>
-          <span class="job-cond">급여 &middot; 근무일 조건</span>
-          <span class="job-go">알바몬에서 지원하기 &rarr;</span>
-        </a>
-      </div>
-      <div class="col col-4">
-        <a class="job" href="https://www.albamon.com/" target="_blank" rel="noopener">
-          <span class="job-area">모집 지역</span>
-          <span class="job-title">채용 공고 제목이 들어갈 자리입니다</span>
-          <span class="job-cond">급여 &middot; 근무일 조건</span>
-          <span class="job-go">알바몬에서 지원하기 &rarr;</span>
-        </a>
-      </div>
+    <div class="hms-recruit-grid">
+
+      <a class="hms-recruit-card hms-human" href="https://www.albamon.com/total-search?keyword=%ED%9C%B4%EB%A8%BC%EC%97%A0%EC%97%90%EC%8A%A4" target="_blank" rel="noopener">
+        <span class="hms-card-corner">🏢</span>
+        <div class="hms-card-head">
+          <span class="hms-card-name">휴먼엠에스</span>
+          <span class="hms-card-badge">근로자 파견 &middot; 도급/용역</span>
+        </div>
+        <p class="hms-card-desc">신촌연세의료원 &middot; 강남세브란스 &middot; 다보스병원 등 의료 &middot; 사무 &middot; 시설 관리 분야 채용 공고를 알바몬에서 확인하실 수 있습니다.</p>
+        <div class="hms-card-tags">
+          <span class="hms-card-tag">안내관리</span>
+          <span class="hms-card-tag">시설관리</span>
+          <span class="hms-card-tag">단순노무</span>
+          <span class="hms-card-tag">일반사무</span>
+          <span class="hms-card-tag">수송관리</span>
+        </div>
+        <span class="hms-card-cta">알바몬에서 진행중인 공고 보기 <span class="hms-arrow">&rarr;</span></span>
+      </a>
+
+      <a class="hms-recruit-card hms-chaeum" href="https://www.albamon.com/total-search?keyword=%EC%B1%84%EC%9B%80%EC%84%9C%EB%B9%84%EC%8A%A4" target="_blank" rel="noopener">
+        <span class="hms-card-corner">🏨</span>
+        <div class="hms-card-head">
+          <span class="hms-card-name">채움서비스</span>
+          <span class="hms-card-badge">호텔 &middot; 리조트 위생 관리</span>
+        </div>
+        <p class="hms-card-desc">파크하얏트 &middot; 웨스틴조선 &middot; 소노벨 &middot; 소노캄 &middot; 롯데호텔 등 호텔 &middot; 리조트 룸메이드 &middot; 기물 &middot; 런드리 채용 공고를 알바몬에서 확인하실 수 있습니다.</p>
+        <div class="hms-card-tags">
+          <span class="hms-card-tag">룸메이드 (내국인)</span>
+          <span class="hms-card-tag">룸메이드 (외국인)</span>
+          <span class="hms-card-tag">기물 세척</span>
+          <span class="hms-card-tag">런드리</span>
+          <span class="hms-card-tag">퍼블릭</span>
+        </div>
+        <span class="hms-card-cta">알바몬에서 진행중인 공고 보기 <span class="hms-arrow">&rarr;</span></span>
+      </a>
+
     </div>
 
-    <p style="text-align:center; margin:26px 0 0;">
-      <a class="btn btn-outline btn-inline" href="https://www.albamon.com/" target="_blank" rel="noopener">알바몬에서 전체 공고 보기 &rarr;</a>
-    </p>
+    <div class="hms-recruit-note">
+      <b>안내</b> &middot; 위 링크는 알바몬의 실시간 검색 결과로 연결되므로 <b>현재 모집 중인 공고만</b> 표시됩니다.
+      알바몬 공고에 없는 직무 문의는 <a href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a> 또는
+      <a href="tel:07041778985">070-4177-8985</a> 로 연락 부탁드립니다.
+    </div>
   </div>
 </div>
 
