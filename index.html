@@ -107,6 +107,22 @@ ul { margin: 0; padding: 0; }
 .btn-ghost:hover { background-color: #ffffff; color: #0d2b45; }
 .btn-outline { border-color: #d7dee6; color: #16202b; background-color: #ffffff; }
 .btn-outline:hover { border-color: #1a73e8; color: #1a73e8; }
+/* 버튼 옆 대상 라벨 (예: 사업주 / 구직자) */
+.btn-audience {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: inherit;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  vertical-align: middle;
+  line-height: 1.4;
+  opacity: 0.85;
+}
+.btn-primary .btn-audience { background: rgba(255,255,255,0.22); }
 
 /* ==========================================================================
    헤더 (모든 브라우저에서 동일하게 동작하도록 position:fixed 사용)
@@ -662,7 +678,8 @@ ul { margin: 0; padding: 0; }
     <p class="hero-lead">근로자 파견업과 도급&middot;용역업 분야에서 쌓아온 현장관리 경험과 체계화된 내부 시스템으로,
       고객 기업에 꼭 맞는 인재 솔루션을 제공합니다.</p>
     <a class="btn btn-primary btn-inline" href="business.html">사업소개 둘러보기</a>
-    <a class="btn btn-ghost btn-inline" href="contact.html">견적 상담 요청</a>
+    <a class="btn btn-ghost btn-inline" href="contact.html">견적 상담 요청 <span class="btn-audience">사업주</span></a>
+    <a class="btn btn-ghost btn-inline" href="contact.html#apply">채용 지원하기 <span class="btn-audience">구직자</span></a>
   </div>
 </div>
 
