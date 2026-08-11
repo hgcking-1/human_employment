@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>[미리보기] 휴먼엠에스 채용 팝업</title>
+<style>
+/* ================================================================
+   미리보기용 페이지 배경 — 실제 humanms.co.kr 상단 히어로와 비슷하게 재현
+   ================================================================ */
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: "Malgun Gothic", "맑은 고딕", sans-serif;
+  color: #ffffff;
+  background: linear-gradient(135deg, #1a2d47 0%, #0e1e35 100%);
+  min-height: 100vh;
+}
+.mock-header {
+  height: 80px; background: #ffffff; color: #333;
+  display: flex; align-items: center; padding: 0 40px; justify-content: space-between;
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+.mock-logo { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+.mock-logo-mark { width: 34px; height: 34px; border-radius: 6px; background: linear-gradient(135deg, #93c5fd, #86efac); }
+.mock-logo-text { font-size: 12px; color: #8b96a5; font-weight: 500; }
+.mock-logo-text b { display: block; font-size: 18px; color: #1a2d47; font-weight: 800; margin-top: 2px; }
+.mock-nav { display: flex; align-items: center; gap: 26px; font-size: 15px; font-weight: 500; }
+.mock-nav a { color: #4a5764; text-decoration: none; }
+.mock-nav .active { color: #1a2d47; font-weight: 700; position: relative; }
+.mock-nav .active:after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 3px; background: #86efac; }
+.mock-cta {
+  padding: 10px 22px; background: #86efac; color: #1a2d47; border-radius: 999px;
+  font-weight: 700; font-size: 14px; margin-left: 10px;
+}
+
+.mock-hero { padding: 120px 40px 200px; position: relative; overflow: hidden; }
+.mock-hero:before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 60%, rgba(60,110,180,.3), transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='300'><rect width='400' height='300' fill='none' stroke='rgba(255,255,255,0.03)' stroke-dasharray='2,4'/></svg>");
+  opacity: 0.6;
+}
+.mock-hero-tag { color: #86efac; letter-spacing: 4px; font-size: 13px; margin-bottom: 24px; font-weight: 700; position: relative; }
+.mock-hero h1 { font-size: 56px; margin: 0 0 32px; line-height: 1.2; position: relative; letter-spacing: -1.5px; }
+.mock-hero h1 b { color: #86efac; font-weight: 800; }
+.mock-hero-underline { height: 4px; width: 60%; background: linear-gradient(to right, #86efac 40%, rgba(255,255,255,0.35) 40%); position: relative; }
+
+/* 안내 문구 (미리보기 페이지 전용) */
+.preview-note {
+  position: fixed; bottom: 24px; left: 24px; right: 24px;
+  padding: 20px 24px; background: rgba(0,0,0,.75); color: #ffffff;
+  border-radius: 12px; font-size: 14px; line-height: 1.7;
+  z-index: 900; max-width: 720px; margin: 0 auto;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+.preview-note b { color: #ffd54f; }
+.preview-note a { color: #93c5fd; }
+
+@media (max-width: 640px) {
+  .mock-header { padding: 0 16px; }
+  .mock-nav, .mock-cta { display: none; }
+  .mock-hero { padding: 60px 20px 120px; }
+  .mock-hero h1 { font-size: 32px; }
+}
+
+/* ================================================================
+   ✨ 실제 배포할 팝업 코드 (여기서부터 --- 여기까지가 붙여넣을 부분)
+   ================================================================ */
+/* --- CUT HERE (start) --- */
+#hms-recruit-popup {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  width: 260px;
+  z-index: 9999;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 0 3px #FFD54F;
+  font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", sans-serif;
+  animation: hmsPopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+#hms-recruit-popup.hms-popup-hidden { display: none; }
+
+@keyframes hmsPopupIn {
+  0% { transform: translateY(-40px) scale(0.7); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes hmsBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(255, 82, 82, 0); }
+}
+@keyframes hmsArrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+#hms-recruit-popup .hms-close {
+  position: absolute; top: 8px; right: 8px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(0,0,0,0.65); color: #ffffff;
+  border: 0; cursor: pointer; padding: 0;
+  font-size: 18px; line-height: 28px; font-family: inherit;
+  z-index: 3; text-align: center;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.2);
+}
+#hms-recruit-popup .hms-close:hover { background: rgba(0,0,0,0.9); }
+
+#hms-recruit-popup .hms-badge {
+  position: absolute; top: 14px; left: 14px;
+  padding: 6px 12px 6px 10px; border-radius: 20px;
+  background: #FF5252; color: #ffffff;
+  font-size: 11px; font-weight: 800; letter-spacing: 1px;
+  z-index: 2;
+  animation: hmsBadgePulse 2s ease-in-out infinite;
+  display: flex; align-items: center; gap: 4px;
+}
+#hms-recruit-popup .hms-badge .hms-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff;
+}
+
+#hms-recruit-popup .hms-link {
+  display: block; color: inherit; text-decoration: none;
+}
+#hms-recruit-popup .hms-image {
+  width: 100%; height: 320px; overflow: hidden;
+  background: #0A1F33 url("https://hgcking-1.github.io/human_employment/images/housekeeping-recruit.jpg") center top / cover no-repeat;
+}
+#hms-recruit-popup .hms-caption {
+  padding: 12px 14px 8px;
+  background: linear-gradient(to top, #ffffff 0%, #ffffff 60%, rgba(255,255,255,0) 100%);
+  margin-top: -30px; position: relative;
+}
+#hms-recruit-popup .hms-caption strong {
+  display: block; font-size: 15px; color: #16202b; font-weight: 800;
+  margin-bottom: 4px; line-height: 1.4;
+}
+#hms-recruit-popup .hms-caption span {
+  display: block; font-size: 12px; color: #6b7686; line-height: 1.5;
+}
+
+#hms-recruit-popup .hms-cta {
+  display: block;
+  padding: 14px 16px;
+  background: linear-gradient(90deg, #FFB800 0%, #FF9500 100%);
+  color: #16202b;
+  text-align: center;
+  font-size: 14px; font-weight: 800;
+  border-top: 1px solid #f0e5c8;
+}
+#hms-recruit-popup .hms-cta .hms-arrow {
+  display: inline-block; margin-left: 4px;
+  animation: hmsArrowBounce 1.2s ease-in-out infinite;
+}
+#hms-recruit-popup:hover .hms-cta { background: linear-gradient(90deg, #FFC530 0%, #FFA820 100%); }
+
+/* 모바일 반응형: 좌우 여백 확보, 살짝 축소 */
+@media screen and (max-width: 720px) {
+  #hms-recruit-popup {
+    top: 76px; right: 12px;
+    width: 200px;
+  }
+  #hms-recruit-popup .hms-image { height: 240px; }
+  #hms-recruit-popup .hms-caption strong { font-size: 13px; }
+  #hms-recruit-popup .hms-caption span { font-size: 11px; }
+  #hms-recruit-popup .hms-cta { padding: 12px 12px; font-size: 13px; }
+  #hms-recruit-popup .hms-badge { top: 10px; left: 10px; padding: 4px 10px 4px 8px; font-size: 10px; }
+}
+/* --- CUT HERE (end) --- */
+</style>
+</head>
+<body>
+
+<!-- 미리보기용 mock 헤더 (실제 사이트가 아닙니다) -->
+<div class="mock-header">
+  <div class="mock-logo">
+    <div class="mock-logo-mark"></div>
+    <div>
+      <div class="mock-logo-text">주식회사</div>
+      <b>휴먼엠에스</b>
+    </div>
+  </div>
+  <nav class="mock-nav">
+    <a href="#" class="active">HOME</a>
+    <a href="#">회사소개</a>
+    <a href="#">사업소개</a>
+    <a href="#">사업실적 +</a>
+    <a href="#" class="mock-cta">CONTACT</a>
+  </nav>
+</div>
+
+<div class="mock-hero">
+  <div class="mock-hero-tag">EMPOWERING TALENT, ELEVATING ENTERPRISES!</div>
+  <h1>고객의 니즈를 실현하는<br>신뢰할 수 있는 파트너 <b>휴먼엠에스</b></h1>
+  <div class="mock-hero-underline"></div>
+</div>
+
+<!-- ✨ 실제 배포될 팝업 (이 부분이 실제 humanms.co.kr에 붙여넣을 대상) -->
+<div id="hms-recruit-popup">
+  <button type="button" class="hms-close" onclick="hmsClosePopup()" aria-label="닫기">×</button>
+  <a class="hms-link" href="https://hgcking-1.github.io/human_employment/contact.html#chaeum-apply" target="_blank" rel="noopener">
+    <div class="hms-badge"><span class="hms-dot"></span>채용중</div>
+    <div class="hms-image" role="img" aria-label="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집"></div>
+    <div class="hms-caption">
+      <strong>호텔 하우스키핑 인력 모집</strong>
+      <span>내국인·외국인 룸메이드<br>안정적 근무환경 · 전문 교육</span>
+    </div>
+    <div class="hms-cta">지원하러 가기 <span class="hms-arrow">→</span></div>
+  </a>
+</div>
+
+<script>
+(function () {
+  var popup = document.getElementById('hms-recruit-popup');
+  try {
+    if (window.sessionStorage && window.sessionStorage.getItem('hmsRecruitPopupClosed') === '1') {
+      popup.className = 'hms-popup-hidden';
+    }
+  } catch (e) {}
+})();
+window.hmsClosePopup = function () {
+  var el = document.getElementById('hms-recruit-popup');
+  if (el) el.className = 'hms-popup-hidden';
+  try { if (window.sessionStorage) window.sessionStorage.setItem('hmsRecruitPopupClosed', '1'); } catch (e) {}
+};
+</script>
+
+<div class="preview-note">
+  <b>📋 이 페이지는 미리보기용입니다.</b><br>
+  실제 humanms.co.kr에 붙여넣을 팝업의 모양을 확인하는 페이지예요. 위쪽 히어로는 실제 사이트를 흉내낸 것이며, 오른쪽에 노란 테두리로 뜬 팝업이 실제로 적용될 팝업입니다. 클릭하시면 <a href="https://hgcking-1.github.io/human_employment/contact.html#chaeum-apply">채움서비스 지원 페이지</a>로 이동합니다.
+</div>
+</body>
+</html>

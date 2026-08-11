@@ -1,0 +1,144 @@
+<!--
+  ══════════════════════════════════════════════════════════════════
+  휴먼엠에스 우측 상단 채용 팝업 — WordPress 붙여넣기용 스니펫
+  ══════════════════════════════════════════════════════════════════
+  · 이 파일 전체 내용을 그대로 복사해서 아래 A/B/C 중 한 곳에 붙여넣으세요.
+  · 어떤 방법이든 결과는 동일합니다.
+
+  [방법 A] Elementor Pro > Site Settings > Custom Code (권장)
+    1) wp-admin 로그인
+    2) Elementor > Site Settings (좌하단 톱니바퀴)
+    3) Custom Code 클릭 → Add New
+    4) Name: "채용 팝업" / Location: "</body> - End" 선택 / Status: Active
+    5) 이 파일 내용을 통째로 붙여넣고 저장 → Publish
+    6) Include Conditions에서 Entire Site 선택
+
+  [방법 B] "Insert Headers and Footers" 플러그인
+    1) 플러그인 검색 → "Insert Headers and Footers" (WPCode 계열) 설치·활성화
+    2) Settings > Insert Headers and Footers
+    3) "Scripts in Footer" 상자에 이 파일 내용을 통째로 붙여넣고 저장
+
+  [방법 C] The7 테마 옵션
+    1) wp-admin > The7 > Theme Options > Advanced Settings > Custom Code
+    2) Body Code 항목에 이 파일 내용을 통째로 붙여넣고 저장
+
+  ══════════════════════════════════════════════════════════════════
+  ↓↓↓ 여기서부터 복사 ↓↓↓
+-->
+<style>
+#hms-recruit-popup {
+  position: fixed;
+  top: 100px;
+  right: 24px;
+  width: 260px;
+  z-index: 9999;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 0 3px #FFD54F;
+  font-family: "Pretendard", "Malgun Gothic", "맑은 고딕", sans-serif;
+  animation: hmsPopupIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+#hms-recruit-popup.hms-popup-hidden { display: none; }
+@keyframes hmsPopupIn {
+  0% { transform: translateY(-40px) scale(0.7); opacity: 0; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes hmsBadgePulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7); }
+  50% { transform: scale(1.06); box-shadow: 0 0 0 12px rgba(255, 82, 82, 0); }
+}
+@keyframes hmsArrowBounce {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+#hms-recruit-popup .hms-close {
+  position: absolute; top: 8px; right: 8px;
+  width: 30px; height: 30px; border-radius: 50%;
+  background: rgba(0,0,0,0.65); color: #ffffff;
+  border: 0; cursor: pointer; padding: 0;
+  font-size: 18px; line-height: 28px; font-family: inherit;
+  z-index: 3; text-align: center;
+}
+#hms-recruit-popup .hms-close:hover { background: rgba(0,0,0,0.9); }
+#hms-recruit-popup .hms-badge {
+  position: absolute; top: 14px; left: 14px;
+  padding: 6px 12px 6px 10px; border-radius: 20px;
+  background: #FF5252; color: #ffffff;
+  font-size: 11px; font-weight: 800; letter-spacing: 1px;
+  z-index: 2;
+  animation: hmsBadgePulse 2s ease-in-out infinite;
+  display: flex; align-items: center; gap: 4px;
+}
+#hms-recruit-popup .hms-badge .hms-dot {
+  display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #ffffff;
+}
+#hms-recruit-popup .hms-link { display: block; color: inherit; text-decoration: none; }
+#hms-recruit-popup .hms-image {
+  width: 100%; height: 320px; overflow: hidden;
+  background: #0A1F33 url("https://hgcking-1.github.io/human_employment/images/housekeeping-recruit.jpg") center top / cover no-repeat;
+}
+#hms-recruit-popup .hms-caption {
+  padding: 12px 14px 8px;
+  background: linear-gradient(to top, #ffffff 0%, #ffffff 60%, rgba(255,255,255,0) 100%);
+  margin-top: -30px; position: relative;
+}
+#hms-recruit-popup .hms-caption strong {
+  display: block; font-size: 15px; color: #16202b; font-weight: 800;
+  margin-bottom: 4px; line-height: 1.4;
+}
+#hms-recruit-popup .hms-caption span {
+  display: block; font-size: 12px; color: #6b7686; line-height: 1.5;
+}
+#hms-recruit-popup .hms-cta {
+  display: block; padding: 14px 16px;
+  background: linear-gradient(90deg, #FFB800 0%, #FF9500 100%);
+  color: #16202b; text-align: center;
+  font-size: 14px; font-weight: 800;
+  border-top: 1px solid #f0e5c8;
+}
+#hms-recruit-popup .hms-cta .hms-arrow {
+  display: inline-block; margin-left: 4px;
+  animation: hmsArrowBounce 1.2s ease-in-out infinite;
+}
+#hms-recruit-popup:hover .hms-cta { background: linear-gradient(90deg, #FFC530 0%, #FFA820 100%); }
+@media screen and (max-width: 720px) {
+  #hms-recruit-popup { top: 76px; right: 12px; width: 200px; }
+  #hms-recruit-popup .hms-image { height: 240px; }
+  #hms-recruit-popup .hms-caption strong { font-size: 13px; }
+  #hms-recruit-popup .hms-caption span { font-size: 11px; }
+  #hms-recruit-popup .hms-cta { padding: 12px 12px; font-size: 13px; }
+  #hms-recruit-popup .hms-badge { top: 10px; left: 10px; padding: 4px 10px 4px 8px; font-size: 10px; }
+}
+</style>
+
+<div id="hms-recruit-popup">
+  <button type="button" class="hms-close" onclick="hmsClosePopup()" aria-label="닫기">×</button>
+  <a class="hms-link" href="https://hgcking-1.github.io/human_employment/contact.html#chaeum-apply" target="_blank" rel="noopener">
+    <div class="hms-badge"><span class="hms-dot"></span>채용중</div>
+    <div class="hms-image" role="img" aria-label="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집"></div>
+    <div class="hms-caption">
+      <strong>호텔 하우스키핑 인력 모집</strong>
+      <span>내국인·외국인 룸메이드<br>안정적 근무환경 · 전문 교육</span>
+    </div>
+    <div class="hms-cta">지원하러 가기 <span class="hms-arrow">→</span></div>
+  </a>
+</div>
+
+<script>
+(function () {
+  var popup = document.getElementById('hms-recruit-popup');
+  if (!popup) return;
+  try {
+    if (window.sessionStorage && window.sessionStorage.getItem('hmsRecruitPopupClosed') === '1') {
+      popup.className = 'hms-popup-hidden';
+    }
+  } catch (e) {}
+})();
+window.hmsClosePopup = function () {
+  var el = document.getElementById('hms-recruit-popup');
+  if (el) el.className = 'hms-popup-hidden';
+  try { if (window.sessionStorage) window.sessionStorage.setItem('hmsRecruitPopupClosed', '1'); } catch (e) {}
+};
+</script>
+<!-- ↑↑↑ 여기까지 복사 ↑↑↑ -->
