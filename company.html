@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회사소개 | 휴먼엠에스</title>
+<meta name="description" content="2016년 창립 이래 인재 존중과 고객의 신뢰를 바탕으로 성장해 온 아웃소싱 전문기업 휴먼엠에스를 소개합니다.">
+<style>
+/* ==========================================================================
+   휴먼엠에스 HUMAN MS — 공통 스타일
+   호환성 기준: Internet Explorer 11 / Edge / Chrome / Safari / 모바일 브라우저
+   - CSS 변수(var), CSS Grid, flex gap, clamp() 등 IE 미지원 문법을 사용하지 않음
+   - 레이아웃은 float + clearfix 방식으로 구성 (모든 브라우저 동일 동작)
+   ========================================================================== */
+
+/* ---------- 기본 초기화 ---------- */
+* { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  margin: 0;
+  padding-top: 76px;              /* 상단 고정 헤더 높이만큼 여백 */
+  font-family: "Malgun Gothic", "맑은 고딕", "Apple SD Gothic Neo", "Nanum Gothic",
+               "돋움", Dotum, sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #4a5764;
+  background: #ffffff;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+img { max-width: 100%; height: auto; border: 0; display: block; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  margin: 0 0 14px;
+  color: #16202b;
+  line-height: 1.35;
+  font-weight: bold;
+}
+p { margin: 0 0 16px; }
+ul { margin: 0; padding: 0; }
+
+/* ---------- 레이아웃 뼈대 ---------- */
+.wrap {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.wrap:after, .row:after, .clearfix:after,
+.header-inner:after, .cta-inner:after, .footer-top:after {
+  content: ""; display: block; clear: both; height: 0; visibility: hidden;
+}
+
+.row { margin-left: -12px; margin-right: -12px; }
+.col { float: left; padding-left: 12px; padding-right: 12px; }
+.col-2 { width: 50%; }
+.col-3 { width: 33.33%; }
+.col-4 { width: 25%; }
+.col-6 { width: 16.66%; }
+
+.section { padding: 90px 0; }
+.section-alt { background: #f6f8fb; }
+.section-navy { background: #0d2b45; color: #b9c6d4; }
+.section-navy h2, .section-navy h3, .section-navy h4 { color: #ffffff; }
+
+/* ---------- 소제목 ---------- */
+.eyebrow {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #1a73e8;
+  margin-bottom: 12px;
+}
+.section-navy .eyebrow { color: #7fb3ff; }
+
+.section-head { max-width: 780px; margin-bottom: 48px; }
+.section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+.section-head h2 { font-size: 36px; letter-spacing: -1px; }
+.section-head p { font-size: 17px; margin-bottom: 0; }
+
+/* ---------- 버튼 ---------- */
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 13px 28px;
+  margin: 0 8px 8px 0;
+  border: 2px solid transparent;
+  border-radius: 40px;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: bold;
+  font-family: inherit;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+}
+.btn-primary { background-color: #1a73e8; color: #ffffff; border-color: #1a73e8; }
+.btn-primary:hover { background-color: #0f57b8; border-color: #0f57b8; }
+.btn-ghost { border-color: #ffffff; color: #ffffff; }
+.btn-ghost:hover { background-color: #ffffff; color: #0d2b45; }
+.btn-outline { border-color: #d7dee6; color: #16202b; background-color: #ffffff; }
+.btn-outline:hover { border-color: #1a73e8; color: #1a73e8; }
+
+/* ==========================================================================
+   헤더 (모든 브라우저에서 동일하게 동작하도록 position:fixed 사용)
+   ========================================================================== */
+.header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  height: 76px;
+  background: #ffffff;
+  border-bottom: 1px solid #e3e8ee;
+}
+.header-inner { position: relative; }
+
+.logo { float: left; line-height: 76px; }
+.logo-mark { font-size: 21px; font-weight: bold; color: #0d2b45; letter-spacing: -1px; }
+.logo-sub { font-size: 11px; font-weight: bold; letter-spacing: 2px; color: #1a73e8; margin-left: 8px; }
+
+.nav { float: left; margin-left: 44px; list-style: none; }
+.nav li { float: left; margin-right: 32px; }
+.nav a {
+  display: block;
+  line-height: 74px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #16202b;
+  border-bottom: 2px solid transparent;
+}
+.nav a:hover { color: #1a73e8; }
+.nav a.active { color: #1a73e8; border-bottom-color: #1a73e8; }
+
+.header-right { float: right; line-height: 76px; }
+.header-tel { font-size: 15px; font-weight: bold; color: #0d2b45; margin-right: 16px; }
+.header-right .btn { padding: 10px 22px; font-size: 14px; margin: 0; }
+
+.nav-toggle {
+  display: none;
+  position: absolute;
+  top: 16px; right: 0;
+  width: 44px; height: 44px;
+  padding: 0;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  background: #ffffff;
+  cursor: pointer;
+}
+.nav-toggle b { display: block; width: 20px; height: 2px; margin: 4px auto; background: #16202b; }
+
+/* ==========================================================================
+   히어로 / 페이지 상단
+   ========================================================================== */
+.hero {
+  background-color: #0d2b45;                       /* IE9 이하 대비 단색 */
+  background-image: -webkit-linear-gradient(top left, #143d63 0%, #071b2e 100%);
+  background-image: linear-gradient(135deg, #143d63 0%, #071b2e 100%);
+  color: #ffffff;
+  padding: 110px 0 100px;
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #8fbcff;
+  border: 1px solid #3b6ea8;
+  border-radius: 40px;
+  padding: 6px 18px;
+  margin-bottom: 24px;
+}
+.hero h1 { color: #ffffff; font-size: 52px; letter-spacing: -2px; margin-bottom: 20px; }
+.hero h1 .thin { display: block; font-size: 32px; font-weight: normal; color: #cfe0f5; margin-bottom: 8px; letter-spacing: -1px; }
+.hero-lead { font-size: 18px; color: #b9c6d4; max-width: 620px; margin-bottom: 34px; }
+
+.pagehead {
+  background-color: #0d2b45;
+  background-image: -webkit-linear-gradient(top left, #143d63 0%, #071b2e 100%);
+  background-image: linear-gradient(135deg, #143d63 0%, #071b2e 100%);
+  color: #ffffff;
+  padding: 76px 0 70px;
+}
+.pagehead h1 { color: #ffffff; font-size: 42px; letter-spacing: -1px; margin-bottom: 10px; }
+.pagehead p { color: #b9c6d4; font-size: 17px; margin: 0; }
+.breadcrumb { font-size: 13px; color: #7e93aa; margin-bottom: 16px; }
+
+/* ==========================================================================
+   3대 강점 카드
+   ========================================================================== */
+.pillars { margin-top: -60px; position: relative; z-index: 5; }
+.pillar {
+  background: #ffffff;
+  border-top: 4px solid #1a73e8;
+  border-radius: 12px;
+  padding: 32px 30px;
+  min-height: 230px;
+  -webkit-box-shadow: 0 8px 28px rgba(13,43,69,.12);
+          box-shadow: 0 8px 28px rgba(13,43,69,.12);
+}
+.pillar-no { font-size: 13px; font-weight: bold; color: #1a73e8; letter-spacing: 1px; margin-bottom: 10px; }
+.pillar h3 { font-size: 21px; margin-bottom: 4px; }
+.pillar-en { font-size: 11px; font-weight: bold; letter-spacing: 1px; color: #7b8794; text-transform: uppercase; margin-bottom: 12px; }
+.pillar p { font-size: 15px; margin: 0; }
+
+/* ==========================================================================
+   핵심 가치
+   ========================================================================== */
+.value {
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  padding: 32px 22px;
+  text-align: center;
+  min-height: 220px;
+}
+.value-icon {
+  width: 54px; height: 54px;
+  line-height: 54px;
+  margin: 0 auto 16px;
+  border-radius: 14px;
+  background: #e8f0fe;
+  color: #1a73e8;
+  font-size: 23px;
+  font-weight: bold;
+}
+.value h3 { font-size: 18px; margin-bottom: 4px; }
+.value p { font-size: 14px; margin: 0; color: #7b8794; }
+
+/* ==========================================================================
+   서비스 카드
+   ========================================================================== */
+.svc-card {
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 12px;
+  padding: 36px 32px;
+  margin-bottom: 24px;
+}
+.svc-card-label {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #1a73e8;
+  background: #e8f0fe;
+  border-radius: 40px;
+  padding: 5px 14px;
+  margin-bottom: 14px;
+}
+.svc-card h3 { font-size: 24px; margin-bottom: 8px; }
+.svc-card p { font-size: 15px; }
+.svc-list { list-style: none; margin: 18px 0 0; }
+.svc-list li {
+  padding: 9px 0 9px 18px;
+  border-top: 1px dashed #e3e8ee;
+  font-size: 15px;
+  color: #16202b;
+  position: relative;
+}
+.svc-list li .bul {
+  position: absolute;
+  left: 2px; top: 18px;
+  width: 6px; height: 6px;
+  background: #1a73e8;
+  border-radius: 3px;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* 서비스 상세 */
+.anchor { display: block; position: relative; top: -90px; visibility: hidden; height: 0; }
+.svc-detail { padding: 46px 0; border-top: 1px solid #e3e8ee; }
+.svc-detail.first { border-top: 0; padding-top: 0; }
+.svc-detail-side { float: left; width: 28%; padding-right: 30px; }
+.svc-detail-body { float: left; width: 72%; }
+.svc-detail-no { font-size: 13px; font-weight: bold; color: #1a73e8; letter-spacing: 2px; margin-bottom: 8px; }
+.svc-detail h3 { font-size: 26px; margin-bottom: 4px; }
+.svc-detail-en { font-size: 12px; letter-spacing: 1px; color: #7b8794; font-weight: bold; }
+.features { margin-top: 20px; }
+.feature {
+  background: #f6f8fb;
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #16202b;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   숫자 / 인허가 배지
+   ========================================================================== */
+.stat { text-align: center; padding: 14px 6px; }
+.stat-num { font-size: 48px; font-weight: bold; color: #ffffff; line-height: 1.2; letter-spacing: -2px; }
+.stat-num small { font-size: 20px; margin-left: 3px; }
+.stat-label { font-size: 15px; color: #93a6ba; margin-top: 4px; }
+
+.badges { margin-top: 8px; }
+.badge {
+  display: inline-block;
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 40px;
+  padding: 11px 22px;
+  margin: 0 8px 10px 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: #16202b;
+}
+.badge i { font-style: normal; color: #1a73e8; margin-right: 8px; }
+
+/* ==========================================================================
+   CEO 인사말
+   ========================================================================== */
+.ceo-side { float: left; width: 38%; padding-right: 40px; }
+.ceo-body { float: left; width: 62%; }
+.ceo-card {
+  background-color: #0d2b45;
+  background-image: -webkit-linear-gradient(top left, #143d63 0%, #0d2b45 100%);
+  background-image: linear-gradient(135deg, #143d63 0%, #0d2b45 100%);
+  color: #ffffff;
+  border-radius: 12px;
+  padding: 40px 32px;
+}
+.ceo-card h3 { color: #ffffff; font-size: 24px; }
+.ceo-card p { color: #b9c6d4; font-size: 15px; margin: 0; }
+.ceo-body p { font-size: 16px; }
+.ceo-sign { margin-top: 26px; padding-top: 22px; border-top: 1px solid #e3e8ee; font-size: 16px; color: #16202b; }
+.ceo-sign strong { font-size: 20px; margin-left: 8px; }
+
+/* ==========================================================================
+   표 / 연혁
+   ========================================================================== */
+.table { width: 100%; border-collapse: collapse; border-top: 2px solid #0d2b45; }
+.table th, .table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid #e3e8ee;
+  font-size: 15px;
+  text-align: left;
+  vertical-align: top;
+}
+.table th { width: 180px; background: #f6f8fb; color: #16202b; font-weight: bold; }
+
+.history { position: relative; padding-left: 32px; border-left: 2px solid #e3e8ee; margin-left: 7px; }
+.history-item { position: relative; padding-bottom: 30px; }
+.history-item .dot {
+  position: absolute;
+  left: -41px; top: 8px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #1a73e8;
+}
+.history-year { font-size: 20px; font-weight: bold; color: #0d2b45; }
+.history-item p { margin: 2px 0 0; font-size: 15px; }
+
+/* ==========================================================================
+   채용 공고 카드
+   ========================================================================== */
+.job {
+  display: block;
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-top: 3px solid #1a73e8;
+  border-radius: 12px;
+  padding: 26px 24px 22px;
+  margin-bottom: 20px;
+  min-height: 230px;
+  color: #4a5764;
+}
+.job:hover { border-color: #1a73e8; border-top-color: #1a73e8; background: #fbfcfe; }
+.job-area {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #1a73e8;
+  background: #e8f0fe;
+  border-radius: 40px;
+  padding: 5px 13px;
+  margin-bottom: 14px;
+}
+.job-title {
+  display: block;
+  font-size: 18px;
+  font-weight: bold;
+  color: #16202b;
+  line-height: 1.45;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.job-cond { display: block; font-size: 14px; color: #7b8794; margin-bottom: 18px; }
+.job-go { display: block; font-size: 14px; font-weight: bold; color: #1a73e8; }
+
+/* ==========================================================================
+   고객사
+   ========================================================================== */
+.client {
+  background: #ffffff;
+  border: 1px solid #e3e8ee;
+  border-radius: 8px;
+  height: 92px;
+  line-height: 92px;          /* 로고를 세로 가운데에 놓기 위한 값 (박스 높이와 동일) */
+  margin-bottom: 14px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: bold;
+  color: #7b8794;
+  text-align: center;
+  overflow: hidden;
+}
+.client img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  max-height: 56px;
+  width: auto;
+  filter: alpha(opacity=78);  /* 익스플로러용 */
+  opacity: .78;
+}
+.client:hover img { filter: alpha(opacity=100); opacity: 1; }
+
+/* ==========================================================================
+   CTA 띠
+   ========================================================================== */
+.cta {
+  background-color: #1a73e8;
+  background-image: -webkit-linear-gradient(left, #0f57b8 0%, #1a73e8 100%);
+  background-image: linear-gradient(90deg, #0f57b8 0%, #1a73e8 100%);
+  color: #ffffff;
+  padding: 62px 0;
+}
+.cta-text { float: left; max-width: 68%; }
+.cta-act { float: right; padding-top: 10px; }
+.cta h2 { color: #ffffff; font-size: 32px; margin-bottom: 6px; }
+.cta p { color: #dbe8fb; margin: 0; font-size: 16px; }
+
+/* ==========================================================================
+   문의 페이지
+   ========================================================================== */
+.contact-left { float: left; width: 42%; padding-right: 40px; }
+.contact-right { float: left; width: 58%; }
+
+.info-card { background: #f6f8fb; border-radius: 12px; padding: 30px 28px; }
+.info-row { padding: 15px 0; border-bottom: 1px solid #e3e8ee; }
+.info-row.last { border-bottom: 0; padding-bottom: 0; }
+.info-key { float: left; width: 90px; font-size: 14px; font-weight: bold; color: #1a73e8; }
+.info-val { margin-left: 100px; font-size: 15px; color: #16202b; }
+.info-val a:hover { color: #1a73e8; }
+.info-sub { color: #7b8794; font-size: 14px; }
+
+.form { background: #ffffff; border: 1px solid #e3e8ee; border-radius: 12px; padding: 34px 32px; }
+.form h2 { font-size: 24px; margin-bottom: 4px; }
+.form-intro { font-size: 15px; margin-bottom: 24px; }
+.form-row { margin-bottom: 18px; }
+.form label { display: block; font-size: 14px; font-weight: bold; color: #16202b; margin-bottom: 7px; }
+.form label .req { color: #e03131; margin-left: 3px; }
+.form input.txt, .form select, .form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d7dee6;
+  border-radius: 8px;
+  /* 16px: iOS Safari가 16px 미만 입력창에서 자동 확대되는 현상을 방지 */
+  font-size: 16px;
+  font-family: inherit;
+  color: #16202b;
+  background: #ffffff;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+/* select 화살표 (iOS/구형 안드로이드에서 사라진 화살표를 배경 이미지로 재현) */
+.form select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%237b8794' d='M6 8L0 0h12z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+.form textarea { height: 150px; resize: vertical; }
+.form input.txt:focus, .form select:focus, .form textarea:focus { border-color: #1a73e8; outline: none; }
+.agree { font-size: 14px; color: #7b8794; }
+.agree input { float: left; margin: 6px 8px 0 0; }
+.agree span { display: block; margin-left: 24px; }
+.form .btn { display: block; width: 100%; margin: 6px 0 0; }
+.form-note { font-size: 13px; color: #7b8794; margin: 12px 0 0; text-align: center; }
+.form-note a { color: #1a73e8; font-weight: bold; }
+.form-msg {
+  display: none;
+  margin-top: 14px;
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: #e8f0fe;
+  color: #0f57b8;
+  font-size: 15px;
+  font-weight: bold;
+}
+.form-msg.on { display: block; }
+
+/* ==========================================================================
+   푸터
+   ========================================================================== */
+.footer { background: #071b2e; color: #93a6ba; padding: 56px 0 28px; font-size: 14px; }
+.footer-top { padding-bottom: 34px; border-bottom: 1px solid #1c3348; }
+.footer h4 { color: #ffffff; font-size: 15px; letter-spacing: 1px; margin-bottom: 14px; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 8px; }
+.footer ul a:hover { color: #ffffff; }
+.footer-logo { font-size: 22px; font-weight: bold; color: #ffffff; margin-bottom: 10px; letter-spacing: -1px; }
+.footer-meta { line-height: 2; }
+.footer-copy { padding-top: 22px; font-size: 13px; color: #64798f; }
+.f-col-1 { float: left; width: 40%; padding-right: 24px; }
+.f-col-2 { float: left; width: 24%; padding-right: 24px; }
+.f-col-3 { float: left; width: 36%; }
+
+/* ==========================================================================
+   내용 표시
+   어떤 브라우저에서도 글과 이미지가 감춰지는 일이 없도록,
+   자바스크립트에 의존하는 등장 효과는 사용하지 않습니다.
+   ========================================================================== */
+.reveal { opacity: 1; }
+
+/* ==========================================================================
+   반응형 — 태블릿
+   ========================================================================== */
+@media screen and (max-width: 1024px) {
+  .hero h1 { font-size: 42px; }
+  .hero h1 .thin { font-size: 26px; }
+  .pillars .col-3 { width: 100%; }
+  .pillar { min-height: 0; margin-bottom: 18px; }
+  .pillars { margin-top: -40px; }
+  .col-4 { width: 50%; }
+  .col-6 { width: 25%; }
+  .value { min-height: 200px; margin-bottom: 16px; }
+  .job { min-height: 200px; }
+  .ceo-side, .ceo-body { float: none; width: 100%; padding-right: 0; }
+  .ceo-side { margin-bottom: 28px; }
+  .contact-left, .contact-right { float: none; width: 100%; padding-right: 0; }
+  .contact-left { margin-bottom: 30px; }
+  .svc-detail-side, .svc-detail-body { float: none; width: 100%; padding-right: 0; }
+  .svc-detail-side { margin-bottom: 16px; }
+}
+
+/* ==========================================================================
+   반응형 — 모바일 메뉴가 필요한 크기
+   ========================================================================== */
+@media screen and (max-width: 860px) {
+  .nav-toggle { display: block; }
+  .header-right .btn, .header-tel { display: none; }
+  .nav {
+    display: none;
+    float: none;
+    margin: 0;
+    position: absolute;
+    top: 76px; left: 0; right: 0;
+    background: #ffffff;
+    border-bottom: 1px solid #e3e8ee;
+    padding: 0 24px 12px;
+    -webkit-box-shadow: 0 8px 20px rgba(13,43,69,.12);
+            box-shadow: 0 8px 20px rgba(13,43,69,.12);
+  }
+  .nav.open { display: block; }
+  .nav li { float: none; margin: 0; }
+  .nav a { line-height: 1.5; padding: 14px 0; border-bottom: 1px solid #e3e8ee; }
+  .nav a.active { border-bottom-color: #e3e8ee; }
+}
+
+/* ==========================================================================
+   반응형 — 휴대폰
+   ========================================================================== */
+@media screen and (max-width: 720px) {
+  body { padding-top: 64px; }
+  .header, .nav { top: 0; }
+  .header { height: 64px; }
+  .logo, .header-right { line-height: 64px; }
+  .nav { top: 64px; padding: 0 18px 12px; }
+  .nav-toggle { top: 10px; }
+  .anchor { top: -76px; }
+
+  .wrap { padding: 0 18px; }
+  .section { padding: 56px 0; }
+  .hero { padding: 62px 0 84px; }
+  .hero h1 { font-size: 30px; letter-spacing: -1px; }
+  .hero h1 .thin { font-size: 20px; }
+  .hero-lead { font-size: 16px; }
+  .pagehead { padding: 48px 0 44px; }
+  .pagehead h1 { font-size: 28px; }
+  .pagehead p { font-size: 15px; }
+
+  .section-head { margin-bottom: 32px; }
+  .section-head h2 { font-size: 25px; }
+  .section-head p { font-size: 15px; }
+
+  .col-2, .col-3, .col-4 { float: none; width: 100%; }
+  .col-6 { width: 50%; }
+  .col { margin-bottom: 0; }
+  .value { min-height: 0; }
+  .job { min-height: 0; }
+  .svc-card { padding: 26px 22px; }
+  .svc-detail { padding: 34px 0; }
+  .svc-detail h3 { font-size: 22px; }
+
+  .stat { padding: 10px 4px; }
+  .stat-num { font-size: 34px; }
+  .stat-num small { font-size: 15px; }
+  .stat-label { font-size: 13px; }
+
+  .cta { padding: 44px 0; }
+  .cta-text, .cta-act { float: none; max-width: 100%; }
+  .cta-act { padding-top: 18px; }
+  .cta h2 { font-size: 23px; }
+
+  .table th { width: 104px; padding: 12px 10px; font-size: 14px; }
+  .table td { padding: 12px 10px; font-size: 14px; }
+
+  .form { padding: 24px 20px; }
+  .info-card { padding: 24px 20px; }
+
+  .f-col-1, .f-col-2, .f-col-3 { float: none; width: 100%; padding-right: 0; margin-bottom: 26px; }
+  .btn { display: block; margin: 0 0 10px; }
+  .btn-inline { display: inline-block; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== 헤더 ===================== -->
+<div class="header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html"><span class="logo-mark">휴먼엠에스</span><span class="logo-sub">HUMAN MS</span></a>
+
+    <ul class="nav" id="nav">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="company.html" class="active">회사소개</a></li>
+        <li><a href="business.html">사업소개</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+    </ul>
+
+    <div class="header-right">
+      <span class="header-tel">070-4177-8985</span>
+      <a class="btn btn-primary" href="contact.html">서비스 문의</a>
+    </div>
+
+    <button type="button" class="nav-toggle" id="navToggle" aria-label="메뉴 열기" aria-expanded="false">
+      <b></b><b></b><b></b>
+    </button>
+  </div>
+</div>
+
+<div class="pagehead">
+  <div class="wrap">
+    <div class="breadcrumb">HOME &nbsp;/&nbsp; 회사소개</div>
+    <h1>회사소개</h1>
+    <p>사람을 존중하는 마음에서 시작된 휴먼엠에스의 10년</p>
+  </div>
+</div>
+
+<!-- ===================== CEO 인사말 ===================== -->
+<div class="section">
+  <div class="wrap clearfix">
+    <div class="ceo-side reveal">
+      <div class="ceo-card">
+        <span class="eyebrow">CEO Message</span>
+        <h3>사람을 소중히,<br>고객을 든든히</h3>
+        <p>인재 존중과 고객의 신뢰. 휴먼엠에스가 지난 10년을 걸어온 두 개의 기준입니다.</p>
+      </div>
+    </div>
+    <div class="ceo-body reveal">
+
+      <p>안녕하십니까. 휴먼엠에스를 찾아주신 여러분께 진심으로 감사드립니다.</p>
+      <p>2016년 창립 이래 어느덧 10년, 저희 휴먼엠에스는 인재 존중과 고객의 신뢰를 바탕으로
+        다양한 업종에서 성공적인 아웃소싱 서비스를 제공하며 꾸준히 성장해 왔습니다.
+        지난 10년간 쌓아온 경험과 신뢰는 휴먼엠에스의 큰 자부심이자, 앞으로 더 멀리 나아갈 원동력입니다.</p>
+      <p>오늘날처럼 급변하는 비즈니스 환경 속에서 기업의 경쟁력을 높이기 위해서는
+        효율적이고 전문적인 아웃소싱 파트너가 무엇보다 중요합니다.
+        휴먼엠에스는 그동안 축적한 전문성과 한 사람 한 사람을 소중히 여기는 마음으로,
+        고객 여러분의 든든한 동반자가 되겠습니다.</p>
+      <p>항상 저희를 믿고 함께해 주시는 모든 고객님께 다시 한번 깊이 감사드리며,
+        더 나은 내일을 향해 한결같은 마음으로 함께 나아가겠습니다. 감사합니다.</p>
+      <div class="ceo-sign">휴먼엠에스 대표이사 <strong>이경미</strong></div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 미션 · 비전 ===================== -->
+<div class="section section-navy">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Mission &amp; Vision</span>
+      <h2>EMPOWERING TALENT,<br>ELEVATING ENTERPRISES</h2>
+      <p>인재의 가능성을 끌어올려, 고객 기업의 수준을 함께 높입니다.</p>
+    </div>
+
+    <div class="row">
+      <div class="col col-2"><div class="svc-card reveal" style="background:#12395c; border-color:#25547f;">
+        <span class="svc-card-label" style="background:#1b4670; color:#8fbcff;">MISSION</span>
+        <h3 style="color:#ffffff;">고객의 니즈를 실현하는 파트너</h3>
+        <p style="color:#b9c6d4; margin:0;">현장마다 다른 요구를 정확히 읽고, 그에 맞는 인력과 운영 방식을 설계해
+          고객 기업의 생산성과 안정성을 함께 끌어올립니다.</p>
+      </div></div>
+
+      <div class="col col-2"><div class="svc-card reveal" style="background:#12395c; border-color:#25547f;">
+        <span class="svc-card-label" style="background:#1b4670; color:#8fbcff;">VISION</span>
+        <h3 style="color:#ffffff;">사람 &middot; 현장 &middot; 시스템의 연결</h3>
+        <p style="color:#b9c6d4; margin:0;">체계화된 내부 시스템 위에 사람과 현장을 연결하여,
+          어느 현장에서나 같은 품질의 서비스가 이어지도록 합니다.</p>
+      </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 핵심 가치 ===================== -->
+<div class="section">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow">Core Values</span>
+      <h2>휴먼엠에스가 지키는 네 가지</h2>
+      <p>사람을 다루는 일이기에, 원칙을 먼저 세웁니다.</p>
+    </div>
+
+    <div class="row">
+      <div class="col col-4"><div class="value reveal">
+        <div class="value-icon">信</div>
+        <h3>신뢰 &middot; 정직</h3>
+        <p>약속한 것을 지키고, 있는 그대로 알립니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value reveal">
+        <div class="value-icon">↗</div>
+        <h3>지속 성장</h3>
+        <p>어제보다 나은 오늘을 위해 멈추지 않습니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value reveal">
+        <div class="value-icon">♡</div>
+        <h3>고객 만족</h3>
+        <p>고객의 현장을 내 현장처럼 살핍니다.</p>
+      </div></div>
+      <div class="col col-4"><div class="value reveal">
+        <div class="value-icon">✓</div>
+        <h3>안전 &middot; 윤리</h3>
+        <p>안전이 최우선, 원칙에서 벗어나지 않습니다.</p>
+      </div></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===================== 회사 개요 =====================
+     ▼ 자본금, 임직원 수 등 추가할 항목이 있으면 알려주세요 -->
+<div class="section section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Company Profile</span>
+      <h2>회사 개요</h2>
+    </div>
+
+    <table class="table reveal">
+      <tbody>
+        <tr><th>회사명</th><td>휴먼엠에스 (HUMAN MS)</td></tr>
+        <tr><th>대표자</th><td>이경미</td></tr>
+        <tr><th>설립일</th><td>2016년</td></tr>
+        <tr><th>법인등록번호</th><td>110111-6296069</td></tr>
+        <tr><th>본사 소재지</th><td>서울특별시 강북구 도봉로 328, 1919호</td></tr>
+        <tr><th>대표전화</th><td>070-4177-8985</td></tr>
+        <tr><th>이메일</th><td>hmms@humanms.co.kr</td></tr>
+        <tr><th>업무시간</th><td>월요일 ~ 금요일 09:00 ~ 18:00</td></tr>
+        <tr><th>사업 분야</th><td>근로자 파견업 (안내관리 &middot; 시설관리 &middot; 단순노무 &middot; 일반사무 &middot; 수송관리)<br>
+          도급 / 용역업 (주차장관리 &middot; 발렛 서비스 &middot; 일반 보안경비 &middot; 건물 내 미화 환경관리)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ===================== 인허가 ===================== -->
+<div class="section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">License</span>
+      <h2>인허가 현황</h2>
+      <p>법적 요건을 갖춘 정식 등록 사업자로서 안심하고 맡기실 수 있습니다.</p>
+    </div>
+    <div class="badges reveal">
+      <span class="badge"><i>&#10003;</i>근로자 파견 사업 허가취득</span>
+      <span class="badge"><i>&#10003;</i>시설경비업 허가취득</span>
+      <span class="badge"><i>&#10003;</i>건물관리위생업 신고</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== 연혁 =====================
+     ▼ 연도별 주요 이력(지사 설립, 인허가 취득 연도, 수상, 주요 계약 등)을 알려주시면 채워넣겠습니다.
+        아래 history-item 한 덩어리를 복사해서 연도와 내용만 바꾸면 항목이 추가됩니다. -->
+<div class="section section-alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">History</span>
+      <h2>연혁</h2>
+      <p>한 걸음씩 쌓아온 휴먼엠에스의 발자취입니다.</p>
+    </div>
+
+    <div class="history reveal">
+      <div class="history-item">
+        <span class="dot"></span>
+        <div class="history-year">2026</div>
+        <p>창립 10주년 &middot; 근로자 파견 및 도급&middot;용역 사업 영역 확대</p>
+      </div>
+      <div class="history-item">
+        <span class="dot"></span>
+        <div class="history-year">2016</div>
+        <p>휴먼엠에스 창립 &middot; 근로자 파견 사업 시작</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta">
+  <div class="wrap cta-inner">
+    <div class="cta-text">
+      <h2>최고의 고객 맞춤형 서비스</h2>
+      <p>현장에 필요한 인력, 어떻게 운영할지 함께 고민하겠습니다.</p>
+    </div>
+    <div class="cta-act"><a class="btn btn-ghost btn-inline" href="contact.html">휴먼엠에스 서비스 문의하기</a></div>
+  </div>
+</div>
+
+<!-- ===================== 푸터 ===================== -->
+<div class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="f-col-1">
+        <div class="footer-logo">휴먼엠에스</div>
+        <p>EMPOWERING TALENT,<br>ELEVATING ENTERPRISES!</p>
+      </div>
+
+      <div class="f-col-2">
+        <h4>바로가기</h4>
+        <ul>
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="company.html">회사소개</a></li>
+          <li><a href="business.html">사업소개</a></li>
+          <li><a href="contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+
+      <div class="f-col-3">
+        <h4>회사 정보</h4>
+        <div class="footer-meta">
+          대표자 : 이경미<br>
+          법인등록번호 : 110111-6296069<br>
+          TEL : <a href="tel:07041778985">070-4177-8985</a><br>
+          E-mail : <a href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a><br>
+          본사소재지 : 서울특별시 강북구 도봉로 328, 1919호
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-copy">
+      &copy; Copyright <span id="year">2026</span>. HUMAN MS All rights reserved.
+    </div>
+  </div>
+</div>
+
+<script>
+/* ==========================================================================
+   휴먼엠에스 HUMAN MS — 공통 스크립트
+   호환성 기준: Internet Explorer 11 / Edge / Chrome / Safari / 모바일 브라우저
+   - ES5 문법만 사용 (let, const, 화살표함수, 템플릿문자열 미사용)
+   - NodeList.forEach, FormData.get 등 IE 미지원 기능 미사용
+   - 스크립트가 동작하지 않아도 페이지 내용은 모두 보이도록 설계
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  var doc = document;
+
+  /* ---------- 0. 브라우저 기능 확인 ----------
+     숫자 카운터 정도에만 사용하며, 지원하지 않는 브라우저(익스플로러 등)에서는
+     최종 숫자가 그대로 표시됩니다. 내용이 감춰지는 일은 없습니다. */
+  var canAnimate = !!window.IntersectionObserver;
+
+  /* ---------- 1. 모바일 메뉴 ---------- */
+  var toggle = doc.getElementById('navToggle');
+  var nav = doc.getElementById('nav');
+
+  if (toggle && nav) {
+    toggle.onclick = function () {
+      var isOpen = nav.className.indexOf('open') > -1;
+      nav.className = isOpen ? 'nav' : 'nav open';
+      toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      return false;
+    };
+    // 메뉴 항목을 누르면 자동으로 닫히도록
+    var navLinks = nav.getElementsByTagName('a');
+    for (var n = 0; n < navLinks.length; n++) {
+      navLinks[n].onclick = function () {
+        nav.className = 'nav';
+        toggle.setAttribute('aria-expanded', 'false');
+      };
+    }
+  }
+
+  /* ---------- 2. 숫자 카운터 ---------- */
+  var counters = doc.querySelectorAll ? doc.querySelectorAll('[data-count]') : [];
+
+  function setNumber(el, value) {
+    el.innerHTML = String(value);
+  }
+
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    if (isNaN(target)) { return; }
+
+    if (!window.requestAnimationFrame) { setNumber(el, target); return; }
+
+    var startTime = null;
+    var duration = 1300;
+
+    function step(now) {
+      if (startTime === null) { startTime = now; }
+      var p = (now - startTime) / duration;
+      if (p > 1) { p = 1; }
+      var eased = 1 - Math.pow(1 - p, 3);
+      setNumber(el, Math.round(target * eased));
+      if (p < 1) { window.requestAnimationFrame(step); }
+    }
+    window.requestAnimationFrame(step);
+  }
+
+  if (counters.length) {
+    if (canAnimate) {
+      var co = new IntersectionObserver(function (entries) {
+        for (var j = 0; j < entries.length; j++) {
+          if (entries[j].isIntersecting) {
+            animateCounter(entries[j].target);
+            co.unobserve(entries[j].target);
+          }
+        }
+      }, { threshold: 0.4 });
+      for (var c = 0; c < counters.length; c++) { co.observe(counters[c]); }
+    } else {
+      // 익스플로러 등: 애니메이션 없이 최종 숫자를 바로 표시
+      for (var k = 0; k < counters.length; k++) {
+        setNumber(counters[k], parseInt(counters[k].getAttribute('data-count'), 10));
+      }
+    }
+  }
+
+  /* ---------- 3. 문의 폼 ---------- */
+  var form = doc.getElementById('inquiryForm');
+
+  function val(id) {
+    var el = doc.getElementById(id);
+    return el ? el.value : '';
+  }
+
+  if (form) {
+    form.onsubmit = function () {
+      var company = val('f-company');
+      var name    = val('f-name');
+      var phone   = val('f-phone');
+      var email   = val('f-email');
+      var service = val('f-service');
+      var message = val('f-message');
+      var agree   = doc.getElementById('f-agree');
+
+      if (!company || !name || !phone || !email || !service || !message) {
+        alert('필수 항목을 모두 입력해 주세요.');
+        return false;
+      }
+      if (agree && !agree.checked) {
+        alert('개인정보 수집 및 이용에 동의해 주세요.');
+        return false;
+      }
+
+      var body = '[휴먼엠에스 서비스 문의]\r\n\r\n'
+               + '회사명: ' + company + '\r\n'
+               + '담당자: ' + name + '\r\n'
+               + '연락처: ' + phone + '\r\n'
+               + '이메일: ' + email + '\r\n'
+               + '관심 서비스: ' + service + '\r\n\r\n'
+               + '문의 내용\r\n-------------------\r\n'
+               + message;
+
+      var subject = '[홈페이지 문의] ' + company + ' ' + name;
+
+      var msg = doc.getElementById('formMsg');
+      if (msg) { msg.className = 'form-msg on'; }
+
+      window.location.href = 'mailto:hmms@humanms.co.kr'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      return false;
+    };
+  }
+
+  /* ---------- 4. 푸터 연도 ---------- */
+  var yearEl = doc.getElementById('year');
+  if (yearEl) { yearEl.innerHTML = String(new Date().getFullYear()); }
+
+})();
+
+</script>
+</body>
+</html>
