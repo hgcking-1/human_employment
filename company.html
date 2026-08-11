@@ -627,6 +627,65 @@ ul { margin: 0; padding: 0; }
   .btn-inline { display: inline-block; }
 }
 
+/* ==========================================================================
+   플로팅 채용 광고 팝업 (우측 하단, 뷰포트 폭의 약 1/4)
+   ========================================================================== */
+.promo-popup {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 25vw;
+  min-width: 220px;
+  max-width: 340px;
+  z-index: 500;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 12px 40px rgba(13,43,69,.28);
+          box-shadow: 0 12px 40px rgba(13,43,69,.28);
+}
+.promo-popup.promo-hidden { display: none; }
+.promo-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(0,0,0,.6);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 30px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  z-index: 2;
+  -webkit-tap-highlight-color: rgba(0,0,0,.2);
+}
+.promo-close:hover { background: rgba(0,0,0,.85); }
+.promo-close:focus { outline: 2px solid #ffffff; outline-offset: 2px; }
+.promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+.promo-link img { display: block; width: 100%; height: auto; }
+.promo-cta {
+  display: block;
+  padding: 10px 12px;
+  background: #1a73e8;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+.promo-link:hover .promo-cta { background: #0f57b8; }
+/* 모바일: 축소해서 콘텐츠 침범 최소화 */
+@media screen and (max-width: 640px) {
+  .promo-popup { right: 10px; bottom: 10px; width: 42vw; min-width: 150px; max-width: 180px; }
+  .promo-close { width: 28px; height: 28px; font-size: 18px; line-height: 26px; }
+  .promo-cta { padding: 8px 6px; font-size: 12px; }
+}
+
 </style>
 </head>
 <body>
@@ -830,6 +889,15 @@ ul { margin: 0; padding: 0; }
   </div>
 </div>
 
+<!-- ===================== 플로팅 채용 광고 팝업 ===================== -->
+<aside class="promo-popup promo-hidden" id="promoPopup" aria-label="채움서비스 호텔 하우스키핑 채용 안내">
+  <button type="button" class="promo-close" onclick="closePromoPopup()" aria-label="채용 광고 닫기">&times;</button>
+  <a class="promo-link" href="contact.html#chaeum-apply">
+    <img src="images/housekeeping-recruit.jpg" alt="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집 안내">
+    <span class="promo-cta">지원서 작성하러 가기 →</span>
+  </a>
+</aside>
+
 <!-- ===================== 푸터 ===================== -->
 <div class="footer">
   <div class="wrap">
@@ -1004,6 +1072,31 @@ ul { margin: 0; padding: 0; }
   /* ---------- 4. 푸터 연도 ---------- */
   var yearEl = doc.getElementById('year');
   if (yearEl) { yearEl.innerHTML = String(new Date().getFullYear()); }
+
+  /* ---------- 5. 플로팅 채용 광고 팝업 ----------
+     sessionStorage에 닫힘 상태 저장 → 같은 세션에서는 다시 안 뜸.
+     새 탭·새 세션 시 재출현. iOS Private mode 등에서 storage 예외 처리. */
+  var promoPopup = doc.getElementById('promoPopup');
+  if (promoPopup) {
+    var promoClosed = false;
+    try {
+      if (window.sessionStorage && window.sessionStorage.getItem('promoPopupClosed') === '1') {
+        promoClosed = true;
+      }
+    } catch (ePromo) { /* storage 접근 불가 시 그냥 표시 */ }
+    if (!promoClosed) {
+      promoPopup.className = promoPopup.className.replace(/(^|\s)promo-hidden(\s|$)/, ' ').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+    }
+  }
+  window.closePromoPopup = function () {
+    var el = doc.getElementById('promoPopup');
+    if (el && el.className.indexOf('promo-hidden') === -1) {
+      el.className = (el.className + ' promo-hidden').replace(/^\s+|\s+$/g, '');
+    }
+    try {
+      if (window.sessionStorage) { window.sessionStorage.setItem('promoPopupClosed', '1'); }
+    } catch (ePromo2) {}
+  };
 
 })();
 

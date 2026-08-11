@@ -647,6 +647,32 @@ ul { margin: 0; padding: 0; }
 }
 .apply-note b { color: #16202b; }
 
+/* 채움서비스 지원서 폼 섹션 (팝업 링크 대상 #chaeum-apply) */
+.apply-form-section {
+  margin-top: 22px;
+  padding: 26px 24px;
+  border: 2px solid #1a73e8;
+  border-radius: 12px;
+  background: #f7fbff;
+  /* fixed 헤더 76px 아래에서 정확히 앵커되도록 오프셋 확보 */
+  scroll-margin-top: 90px;
+}
+.apply-form-header { margin-bottom: 18px; }
+.apply-form-header h3 { font-size: 20px; margin: 0 0 6px; color: #16202b; }
+.apply-form-header p { font-size: 14px; color: #4a5764; margin: 0; }
+.apply-form-section .form {
+  background: #ffffff;
+  border: 1px solid #d7dee6;
+  padding: 24px 22px;
+}
+/* IE11 등 scroll-margin-top 미지원 브라우저용 fallback: 앵커 요소 위 여백 padding */
+.apply-form-section:before {
+  content: "";
+  display: block;
+  height: 0;
+  margin-top: 0;
+}
+
 /* ==========================================================================
    푸터
    ========================================================================== */
@@ -769,6 +795,65 @@ ul { margin: 0; padding: 0; }
   .f-col-1, .f-col-2, .f-col-3 { float: none; width: 100%; padding-right: 0; margin-bottom: 26px; }
   .btn { display: block; margin: 0 0 10px; }
   .btn-inline { display: inline-block; }
+}
+
+/* ==========================================================================
+   플로팅 채용 광고 팝업 (우측 하단, 뷰포트 폭의 약 1/4)
+   ========================================================================== */
+.promo-popup {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  width: 25vw;
+  min-width: 220px;
+  max-width: 340px;
+  z-index: 500;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 12px 40px rgba(13,43,69,.28);
+          box-shadow: 0 12px 40px rgba(13,43,69,.28);
+}
+.promo-popup.promo-hidden { display: none; }
+.promo-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0;
+  padding: 0;
+  background: rgba(0,0,0,.6);
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 30px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: center;
+  z-index: 2;
+  -webkit-tap-highlight-color: rgba(0,0,0,.2);
+}
+.promo-close:hover { background: rgba(0,0,0,.85); }
+.promo-close:focus { outline: 2px solid #ffffff; outline-offset: 2px; }
+.promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; }
+.promo-link img { display: block; width: 100%; height: auto; }
+.promo-cta {
+  display: block;
+  padding: 10px 12px;
+  background: #1a73e8;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: -0.3px;
+}
+.promo-link:hover .promo-cta { background: #0f57b8; }
+/* 모바일: 축소해서 콘텐츠 침범 최소화 */
+@media screen and (max-width: 640px) {
+  .promo-popup { right: 10px; bottom: 10px; width: 42vw; min-width: 150px; max-width: 180px; }
+  .promo-close { width: 28px; height: 28px; font-size: 18px; line-height: 26px; }
+  .promo-cta { padding: 8px 6px; font-size: 12px; }
 }
 
 </style>
@@ -939,6 +1024,91 @@ ul { margin: 0; padding: 0; }
             <span class="apply-card-cta">알바몬에서 진행중인 공고 보기 →</span>
           </a>
 
+          <!-- ===================== 채움서비스 지원서 폼 =====================
+               우측 하단 채용 광고 팝업이 이 폼(#chaeum-apply)으로 이동함. -->
+          <div class="apply-form-section" id="chaeum-apply">
+            <div class="apply-form-header">
+              <h3>채움서비스 <span class="form-badge badge-apply">지원서 작성</span></h3>
+              <p>알바몬 지원이 어려우신 분은 아래 양식으로 직접 접수 가능합니다. 담당자가 개별 연락드립니다.</p>
+            </div>
+
+            <form class="form" id="applyForm" action="#" method="post">
+              <div class="row">
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-name">지원자 이름 <span class="req">*</span></label>
+                  <input class="txt" type="text" id="a-name" name="name" placeholder="예) 홍길동">
+                </div></div>
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-birth">생년월일 <span class="req">*</span></label>
+                  <input class="txt" type="text" id="a-birth" name="birth" placeholder="예) 1990-01-01">
+                </div></div>
+              </div>
+
+              <div class="row">
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-phone">연락처 <span class="req">*</span></label>
+                  <input class="txt" type="tel" id="a-phone" name="phone" placeholder="예) 010-0000-0000">
+                </div></div>
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-email">이메일 <span class="req">*</span></label>
+                  <input class="txt" type="email" id="a-email" name="email" placeholder="예) name@email.com">
+                </div></div>
+              </div>
+
+              <div class="form-row">
+                <label for="a-position">희망 직무 <span class="req">*</span></label>
+                <select id="a-position" name="position">
+                  <option value="">선택해 주세요</option>
+                  <optgroup label="호텔 하우스키핑 (채움서비스 주력)">
+                    <option>룸메이드 (내국인)</option>
+                    <option>룸메이드 (외국인)</option>
+                    <option>기물 세척</option>
+                    <option>런드리 (세탁물 관리)</option>
+                    <option>퍼블릭 (공용 구역 청소)</option>
+                  </optgroup>
+                  <optgroup label="기타">
+                    <option>시설 관리</option>
+                    <option>기타 (직접 기재)</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <div class="row">
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-region">희망 근무 지역 <span class="req">*</span></label>
+                  <input class="txt" type="text" id="a-region" name="region" placeholder="예) 서울 / 제주 / 전 지역 가능">
+                </div></div>
+                <div class="col col-2"><div class="form-row">
+                  <label for="a-start">희망 근무 시작일</label>
+                  <input class="txt" type="text" id="a-start" name="start" placeholder="예) 즉시 가능 / 2026-05-01">
+                </div></div>
+              </div>
+
+              <div class="form-row">
+                <label for="a-career">경력 사항</label>
+                <textarea id="a-career" name="career" placeholder="관련 경력이 있으시면 회사명 · 기간 · 담당 업무를 간단히 적어주세요. 없으시면 &quot;신규 지원&quot; 이라고 적어주셔도 됩니다." style="height:110px;"></textarea>
+              </div>
+
+              <div class="form-row">
+                <label for="a-message">자기소개 · 지원 동기 <span class="req">*</span></label>
+                <textarea id="a-message" name="message" placeholder="지원 동기, 강점, 근무 가능 시간대 등 어필하고 싶은 내용을 자유롭게 적어주세요."></textarea>
+              </div>
+
+              <div class="form-row clearfix">
+                <div class="agree">
+                  <input type="checkbox" id="a-agree" name="agree">
+                  <span>개인정보 수집 및 이용에 동의합니다. 수집한 정보는 채용 전형 목적으로만 사용되며, 채용 절차 종료 후 관계법령에 따라 파기합니다.</span>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary">지원서 보내기</button>
+
+              <div class="form-msg" id="formMsgApply">메일 작성 창이 열립니다. 내용을 확인하신 뒤 보내주세요.</div>
+
+              <p class="form-note">창이 열리지 않으면 <a href="mailto:hmms@humanms.co.kr">hmms@humanms.co.kr</a> 로 직접 보내주세요.</p>
+            </form>
+          </div>
+
           <div class="apply-note">
             <b>안내</b><br>
             · 위 링크는 알바몬의 실시간 검색 결과로 연결되므로, <b>현재 모집중인 공고만</b> 표시됩니다.<br>
@@ -962,6 +1132,15 @@ ul { margin: 0; padding: 0; }
     <div class="cta-act"><a class="btn btn-ghost btn-inline" href="tel:07041778985">070-4177-8985</a></div>
   </div>
 </div>
+
+<!-- ===================== 플로팅 채용 광고 팝업 ===================== -->
+<aside class="promo-popup promo-hidden" id="promoPopup" aria-label="채움서비스 호텔 하우스키핑 채용 안내">
+  <button type="button" class="promo-close" onclick="closePromoPopup()" aria-label="채용 광고 닫기">&times;</button>
+  <a class="promo-link" href="contact.html#chaeum-apply">
+    <img src="images/housekeeping-recruit.jpg" alt="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집 안내">
+    <span class="promo-cta">지원서 작성하러 가기 →</span>
+  </a>
+</aside>
 
 <!-- ===================== 푸터 ===================== -->
 <div class="footer">
@@ -1134,12 +1313,58 @@ ul { margin: 0; padding: 0; }
     };
   }
 
-  /* ---------- 3-2. 채용 지원 (알바몬 이동 안내) ----------
-     지원서 폼 대신 알바몬 실시간 공고로 이동하도록 변경.
-     지원 접수는 알바몬이 담당하므로 이 페이지에는 JS 로직 불필요. */
+  /* ---------- 3-2. 채움서비스 지원서 폼 (구직자 직접 접수) ---------- */
+  var applyForm = doc.getElementById('applyForm');
+  if (applyForm) {
+    applyForm.onsubmit = function () {
+      var name     = val('a-name');
+      var birth    = val('a-birth');
+      var phone    = val('a-phone');
+      var email    = val('a-email');
+      var position = val('a-position');
+      var region   = val('a-region');
+      var start    = val('a-start');
+      var career   = val('a-career');
+      var message  = val('a-message');
+      var agree    = doc.getElementById('a-agree');
+
+      if (!name || !birth || !phone || !email || !position || !region || !message) {
+        alert('필수 항목을 모두 입력해 주세요.');
+        return false;
+      }
+      if (agree && !agree.checked) {
+        alert('개인정보 수집 및 이용에 동의해 주세요.');
+        return false;
+      }
+
+      var body = '[채움서비스 채용 지원서]\r\n\r\n'
+               + '지원자: ' + name + '\r\n'
+               + '생년월일: ' + birth + '\r\n'
+               + '연락처: ' + phone + '\r\n'
+               + '이메일: ' + email + '\r\n'
+               + '희망 직무: ' + position + '\r\n'
+               + '희망 지역: ' + region + '\r\n'
+               + '근무 시작일: ' + (start || '(미기재)') + '\r\n\r\n'
+               + '경력 사항\r\n-------------------\r\n'
+               + (career || '(미기재)') + '\r\n\r\n'
+               + '자기소개 · 지원 동기\r\n-------------------\r\n'
+               + message;
+
+      var subject = '[채움서비스 지원] ' + position + ' - ' + name;
+
+      var msg2 = doc.getElementById('formMsgApply');
+      if (msg2) { msg2.className = 'form-msg on'; }
+
+      window.location.href = 'mailto:hmms@humanms.co.kr'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      return false;
+    };
+  }
 
   /* ---------- 3-3. 사업주/구직자 탭 전환 (전역 함수) ---------- */
-  window.switchContactTab = function (which) {
+  window.switchContactTab = function (which, preserveHash) {
     var isApply = (which === 'apply');
     var tabBiz    = doc.getElementById('tabBiz');
     var tabApply  = doc.getElementById('tabApply');
@@ -1154,20 +1379,62 @@ ul { margin: 0; padding: 0; }
     panelBiz.className = 'contact-panel' + (isApply ? '' : ' active');
     panelApp.className = 'contact-panel' + (isApply ? ' active' : '');
 
-    // URL 해시 갱신 (뒤로가기·공유 링크 대응). pushState 미지원 브라우저는 무시.
-    if (window.history && window.history.replaceState) {
+    // URL 해시 갱신 — preserveHash가 true면 기존 해시 유지(#chaeum-apply 등)
+    if (!preserveHash && window.history && window.history.replaceState) {
       try { window.history.replaceState(null, '', isApply ? '#apply' : '#'); } catch(e) {}
     }
   };
 
-  // 초기 진입 시 URL 해시(#apply)면 지원 탭으로 시작
-  if (window.location.hash && window.location.hash.indexOf('apply') > -1) {
-    window.switchContactTab('apply');
+  // 초기 진입 해시 처리: apply / chaeum-apply → 지원 탭 활성화 + 해당 앵커로 스크롤
+  var initHash = (window.location.hash || '').replace('#', '');
+  if (initHash.indexOf('apply') > -1) {
+    window.switchContactTab('apply', true);  // 해시 유지
+    // 폼 위치로 스크롤 (탭 전환 후 다음 프레임에서 실행 — 레이아웃 반영 대기)
+    if (initHash === 'chaeum-apply') {
+      setTimeout(function () {
+        var target = doc.getElementById('chaeum-apply');
+        if (target) {
+          if (target.scrollIntoView) {
+            target.scrollIntoView({ block: 'start' });
+          } else {
+            // IE11 fallback: 좌표 계산 후 이동
+            var rect = target.getBoundingClientRect();
+            var top = rect.top + (window.pageYOffset || doc.documentElement.scrollTop) - 90;
+            window.scrollTo(0, top);
+          }
+        }
+      }, 50);
+    }
   }
 
   /* ---------- 4. 푸터 연도 ---------- */
   var yearEl = doc.getElementById('year');
   if (yearEl) { yearEl.innerHTML = String(new Date().getFullYear()); }
+
+  /* ---------- 5. 플로팅 채용 광고 팝업 ----------
+     sessionStorage에 닫힘 상태 저장 → 같은 세션에서는 다시 안 뜸.
+     새 탭·새 세션 시 재출현. iOS Private mode 등에서 storage 예외 처리. */
+  var promoPopup = doc.getElementById('promoPopup');
+  if (promoPopup) {
+    var promoClosed = false;
+    try {
+      if (window.sessionStorage && window.sessionStorage.getItem('promoPopupClosed') === '1') {
+        promoClosed = true;
+      }
+    } catch (ePromo) { /* storage 접근 불가 시 그냥 표시 */ }
+    if (!promoClosed) {
+      promoPopup.className = promoPopup.className.replace(/(^|\s)promo-hidden(\s|$)/, ' ').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+    }
+  }
+  window.closePromoPopup = function () {
+    var el = doc.getElementById('promoPopup');
+    if (el && el.className.indexOf('promo-hidden') === -1) {
+      el.className = (el.className + ' promo-hidden').replace(/^\s+|\s+$/g, '');
+    }
+    try {
+      if (window.sessionStorage) { window.sessionStorage.setItem('promoPopupClosed', '1'); }
+    } catch (ePromo2) {}
+  };
 
 })();
 
