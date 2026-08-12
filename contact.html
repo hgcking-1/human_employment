@@ -647,7 +647,7 @@ ul { margin: 0; padding: 0; }
 }
 .apply-note b { color: #16202b; }
 
-/* 채움서비스 지원서 폼 섹션 (팝업 링크 대상 #chaeum-apply) */
+/* 지원서 작성 서비스 폼 섹션 (팝업 링크 대상 #chaeum-apply) */
 .apply-form-section {
   margin-top: 22px;
   padding: 26px 24px;
@@ -671,6 +671,96 @@ ul { margin: 0; padding: 0; }
   display: block;
   height: 0;
   margin-top: 0;
+}
+
+/* 채용 유형 선택 카드 (호텔 하우스키핑 / 주차관리) */
+.apply-type-select {
+  margin-bottom: 18px !important;
+  padding: 14px 14px 16px;
+  background: #eff6ff;
+  border: 1px solid #b7d4f3;
+  border-radius: 10px;
+}
+.apply-type-select > label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #0d2b45;
+}
+.apply-type-cards {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  gap: 12px;
+}
+.apply-type-card {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  position: relative;
+  display: block;
+  padding: 14px 14px 14px 42px;
+  background: #ffffff;
+  border: 2px solid #d7dee6;
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-transition: all .15s;
+  transition: all .15s;
+}
+.apply-type-card input[type="radio"] {
+  position: absolute;
+  top: 18px;
+  left: 14px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: #1a73e8;
+}
+.apply-type-card:hover { border-color: #7fb3f0; background: #fafcff; }
+.apply-type-card.checked,
+.apply-type-card.checked:hover {
+  border-color: #1a73e8;
+  background: #f0f7ff;
+  -webkit-box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+          box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+}
+.apply-type-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #1a73e8;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+.apply-type-card[data-type="parking"] .apply-type-badge { background: #0d2b45; }
+.apply-type-title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #16202b;
+  margin-bottom: 4px;
+}
+.apply-type-sub {
+  font-size: 12px;
+  color: #6a7683;
+  line-height: 1.5;
+}
+@media screen and (max-width: 640px) {
+  .apply-type-cards {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
 }
 
 /* ==========================================================================
@@ -1045,15 +1135,35 @@ ul { margin: 0; padding: 0; }
             <span class="apply-card-cta">알바몬에서 진행중인 공고 보기 →</span>
           </a>
 
-          <!-- ===================== 채움서비스 지원서 폼 =====================
-               우측 하단 채용 광고 팝업이 이 폼(#chaeum-apply)으로 이동함. -->
+          <!-- ===================== 지원서 작성 서비스 폼 =====================
+               우측 하단 채용 광고 팝업이 이 폼(#chaeum-apply)으로 이동함.
+               #chaeum-apply?type=housekeeping / ?type=parking 로 자동 선택. -->
           <div class="apply-form-section" id="chaeum-apply">
             <div class="apply-form-header">
-              <h3>채움서비스 <span class="form-badge badge-apply">지원서 작성</span></h3>
-              <p>알바몬 지원이 어려우신 분은 아래 양식으로 직접 접수 가능합니다. 담당자가 개별 연락드립니다.</p>
+              <h3>지원서 작성 <span class="form-badge badge-apply">서비스</span></h3>
+              <p>알바몬 지원이 어려우신 분은 아래 양식으로 직접 접수 가능합니다. <b>지원하시는 채용에 따라 담당 회사가 다르니 아래에서 정확히 선택</b>해 주세요. 담당자가 개별 연락드립니다.</p>
             </div>
 
             <form class="form" id="applyForm" action="#" method="post">
+              <!-- 채용 유형 선택 (호텔 하우스키핑 / 주차관리) -->
+              <div class="form-row apply-type-select">
+                <label>지원하시는 채용 <span class="req">*</span></label>
+                <div class="apply-type-cards">
+                  <label class="apply-type-card" data-type="housekeeping" for="applyType-hk">
+                    <input type="radio" name="applyType" value="housekeeping" id="applyType-hk">
+                    <span class="apply-type-badge">채움서비스</span>
+                    <div class="apply-type-title">호텔 하우스키핑 인력 모집</div>
+                    <div class="apply-type-sub">룸메이드 · 기물 · 런드리 · 퍼블릭<br>담당: 채움서비스 (호텔 · 리조트 위생 관리)</div>
+                  </label>
+                  <label class="apply-type-card" data-type="parking" for="applyType-pk">
+                    <input type="radio" name="applyType" value="parking" id="applyType-pk">
+                    <span class="apply-type-badge">휴먼엠에스</span>
+                    <div class="apply-type-title">주차 관리 인력 모집</div>
+                    <div class="apply-type-sub">주차관리 · 발렛 · 현장 대응 · 거래처 현장 의뢰<br>담당: 휴먼엠에스 (아웃소싱 · 시설 관리)</div>
+                  </label>
+                </div>
+              </div>
+
               <div class="row">
                 <div class="col col-2"><div class="form-row">
                   <label for="a-name">지원자 이름 <span class="req">*</span></label>
@@ -1079,18 +1189,7 @@ ul { margin: 0; padding: 0; }
               <div class="form-row">
                 <label for="a-position">희망 직무 <span class="req">*</span></label>
                 <select id="a-position" name="position">
-                  <option value="">선택해 주세요</option>
-                  <optgroup label="호텔 하우스키핑 (채움서비스 주력)">
-                    <option>룸메이드 (내국인)</option>
-                    <option>룸메이드 (외국인)</option>
-                    <option>기물 세척</option>
-                    <option>런드리 (세탁물 관리)</option>
-                    <option>퍼블릭 (공용 구역 청소)</option>
-                  </optgroup>
-                  <optgroup label="기타">
-                    <option>시설 관리</option>
-                    <option>기타 (직접 기재)</option>
-                  </optgroup>
+                  <option value="">먼저 위에서 채용을 선택해 주세요</option>
                 </select>
               </div>
 
@@ -1154,21 +1253,21 @@ ul { margin: 0; padding: 0; }
   </div>
 </div>
 
-<!-- ===================== 플로팅 채용 광고 팝업 ===================== -->
+<!-- ===================== 플로팅 채용 광고 팝업 (호텔 하우스키핑 = 채움서비스) ===================== -->
 <aside class="promo-popup promo-hidden" id="promoPopup" aria-label="채움서비스 호텔 하우스키핑 채용 안내">
   <div class="promo-drag" id="promoDrag" title="드래그해서 이동" aria-hidden="true"></div>
   <button type="button" class="promo-close" onclick="closePromoPopup()" aria-label="채용 광고 닫기">&times;</button>
-  <a class="promo-link" href="contact.html#chaeum-apply">
+  <a class="promo-link" href="contact.html#chaeum-apply?type=housekeeping">
     <img src="images/housekeeping-recruit.jpg" alt="채움서비스 호텔 하우스키핑(룸메이드) 인력 모집 안내">
     <span class="promo-cta">지원서 작성하러 가기 →</span>
   </a>
 </aside>
 
-<!-- ===================== 플로팅 채용 광고 팝업 (주차) ===================== -->
+<!-- ===================== 플로팅 채용 광고 팝업 (주차 = 휴먼엠에스) ===================== -->
 <aside class="promo-popup promo-hidden" id="promoPopupParking" aria-label="휴먼엠에스 주차관리 인력 모집 안내">
   <div class="promo-drag" id="promoDragParking" title="드래그해서 이동" aria-hidden="true"></div>
   <button type="button" class="promo-close" onclick="closePromoPopupParking()" aria-label="주차 채용 광고 닫기">&times;</button>
-  <a class="promo-link" href="contact.html#chaeum-apply">
+  <a class="promo-link" href="contact.html#chaeum-apply?type=parking">
     <img src="images/parking-recruit.jpg" alt="휴먼엠에스 주차관리 인력 모집 안내">
     <span class="promo-cta">지원서 작성하러 가기 →</span>
   </a>
@@ -1345,21 +1444,103 @@ ul { margin: 0; padding: 0; }
     };
   }
 
-  /* ---------- 3-2. 채움서비스 지원서 폼 (구직자 직접 접수) ---------- */
+  /* ---------- 3-2. 지원서 작성 서비스 폼 (구직자 직접 접수) ----------
+     · 채용 유형(호텔 하우스키핑 = 채움서비스 / 주차 = 휴먼엠에스) 선택 필수
+     · 유형에 따라 희망 직무 옵션이 자동 변경
+     · 메일 제목·본문에 담당 회사와 채용 유형을 명확히 구분 표기 */
+  var APPLY_TYPES = {
+    housekeeping: {
+      company: '채움서비스',
+      recruit: '호텔 하우스키핑 인력 모집',
+      positions: ['룸메이드 (내국인)', '룸메이드 (외국인)', '기물 세척', '런드리 (세탁물 관리)', '퍼블릭 (공용 구역 청소)', '기타 (직접 기재)']
+    },
+    parking: {
+      company: '휴먼엠에스',
+      recruit: '주차 관리 인력 모집',
+      positions: ['주차 관리원', '발렛 파킹', '현장 응대·안내', '거래처 현장 파견', '시설 관리', '기타 (직접 기재)']
+    }
+  };
+
+  function getSelectedApplyType() {
+    var radios = doc.getElementsByName('applyType');
+    for (var i = 0; i < radios.length; i++) { if (radios[i].checked) return radios[i].value; }
+    return '';
+  }
+
+  function updatePositionOptions(type) {
+    var sel = doc.getElementById('a-position');
+    if (!sel) return;
+    while (sel.firstChild) sel.removeChild(sel.firstChild);
+    var placeholder = doc.createElement('option');
+    placeholder.value = '';
+    placeholder.text = type ? '선택해 주세요' : '먼저 위에서 채용을 선택해 주세요';
+    sel.appendChild(placeholder);
+    if (type && APPLY_TYPES[type]) {
+      var list = APPLY_TYPES[type].positions;
+      for (var i = 0; i < list.length; i++) {
+        var opt = doc.createElement('option');
+        opt.value = list[i];
+        opt.text = list[i];
+        sel.appendChild(opt);
+      }
+    }
+  }
+
+  function updateApplyTypeCardsUI() {
+    var cards = doc.querySelectorAll('.apply-type-card');
+    for (var i = 0; i < cards.length; i++) {
+      var input = cards[i].querySelector('input[type="radio"]');
+      var isChecked = input && input.checked;
+      cards[i].className = 'apply-type-card' + (isChecked ? ' checked' : '');
+    }
+  }
+
+  var applyTypeRadios = doc.getElementsByName('applyType');
+  for (var iR = 0; iR < applyTypeRadios.length; iR++) {
+    applyTypeRadios[iR].onchange = function () {
+      updatePositionOptions(this.value);
+      updateApplyTypeCardsUI();
+    };
+  }
+
+  /* 팝업에서 ?type=housekeeping / ?type=parking 로 이동해오면 자동 선택 */
+  (function prefillFromHash() {
+    var h = (window.location.hash || '').replace('#', '');
+    var m = h.match(/type=(housekeeping|parking)/);
+    if (m) {
+      var t = m[1];
+      var el = doc.getElementById(t === 'housekeeping' ? 'applyType-hk' : 'applyType-pk');
+      if (el) {
+        el.checked = true;
+        updatePositionOptions(t);
+        updateApplyTypeCardsUI();
+      }
+      /* 앵커 스크롤 원래대로 동작하도록 hash 정리 */
+      if (history && history.replaceState) {
+        history.replaceState(null, '', '#chaeum-apply');
+      }
+    }
+  })();
+
   var applyForm = doc.getElementById('applyForm');
   if (applyForm) {
     applyForm.onsubmit = function () {
-      var name     = val('a-name');
-      var birth    = val('a-birth');
-      var phone    = val('a-phone');
-      var email    = val('a-email');
-      var position = val('a-position');
-      var region   = val('a-region');
-      var start    = val('a-start');
-      var career   = val('a-career');
-      var message  = val('a-message');
-      var agree    = doc.getElementById('a-agree');
+      var applyType = getSelectedApplyType();
+      var name      = val('a-name');
+      var birth     = val('a-birth');
+      var phone     = val('a-phone');
+      var email     = val('a-email');
+      var position  = val('a-position');
+      var region    = val('a-region');
+      var start     = val('a-start');
+      var career    = val('a-career');
+      var message   = val('a-message');
+      var agree     = doc.getElementById('a-agree');
 
+      if (!applyType) {
+        alert('지원하시는 채용을 선택해 주세요.\n(호텔 하우스키핑 - 채움서비스 / 주차 관리 - 휴먼엠에스)');
+        return false;
+      }
       if (!name || !birth || !phone || !email || !position || !region || !message) {
         alert('필수 항목을 모두 입력해 주세요.');
         return false;
@@ -1369,7 +1550,13 @@ ul { margin: 0; padding: 0; }
         return false;
       }
 
-      var body = '[채움서비스 채용 지원서]\r\n\r\n'
+      var t = APPLY_TYPES[applyType];
+      var header = '[' + t.company + ' · ' + t.recruit + ' 지원서]';
+
+      var body = header + '\r\n\r\n'
+               + '■ 담당 회사: ' + t.company + '\r\n'
+               + '■ 지원 채용: ' + t.recruit + '\r\n'
+               + '------------------------------------\r\n'
                + '지원자: ' + name + '\r\n'
                + '생년월일: ' + birth + '\r\n'
                + '연락처: ' + phone + '\r\n'
@@ -1382,7 +1569,7 @@ ul { margin: 0; padding: 0; }
                + '자기소개 · 지원 동기\r\n-------------------\r\n'
                + message;
 
-      var subject = '[채움서비스 지원] ' + position + ' - ' + name;
+      var subject = '[' + t.company + ' - ' + t.recruit + '] ' + position + ' - ' + name;
 
       var msg2 = doc.getElementById('formMsgApply');
       if (msg2) { msg2.className = 'form-msg on'; }
@@ -1417,19 +1604,18 @@ ul { margin: 0; padding: 0; }
     }
   };
 
-  // 초기 진입 해시 처리: apply / chaeum-apply → 지원 탭 활성화 + 해당 앵커로 스크롤
+  // 초기 진입 해시 처리: apply / chaeum-apply(?type=...) → 지원 탭 활성화 + 앵커 스크롤
   var initHash = (window.location.hash || '').replace('#', '');
-  if (initHash.indexOf('apply') > -1) {
+  var initBase = initHash.split('?')[0];  /* ?type=... 부분 제거하고 base id만 추출 */
+  if (initBase.indexOf('apply') > -1) {
     window.switchContactTab('apply', true);  // 해시 유지
-    // 폼 위치로 스크롤 (탭 전환 후 다음 프레임에서 실행 — 레이아웃 반영 대기)
-    if (initHash === 'chaeum-apply') {
+    if (initBase === 'chaeum-apply') {
       setTimeout(function () {
         var target = doc.getElementById('chaeum-apply');
         if (target) {
           if (target.scrollIntoView) {
             target.scrollIntoView({ block: 'start' });
           } else {
-            // IE11 fallback: 좌표 계산 후 이동
             var rect = target.getBoundingClientRect();
             var top = rect.top + (window.pageYOffset || doc.documentElement.scrollTop) - 90;
             window.scrollTo(0, top);
