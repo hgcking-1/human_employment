@@ -851,8 +851,8 @@ ul { margin: 0; padding: 0; }
 .promo-close:hover { background: rgba(0,0,0,0.95); }
 .promo-close:focus { outline: 2px solid #ffffff; outline-offset: -2px; }
 .promo-link { display: block; color: inherit; text-decoration: none; cursor: pointer; margin-top: 26px; }
-/* 이미지 전체가 보이도록 자연 비율로 표시 (crop 없음) */
-.promo-link img { display: block; width: 100%; height: auto; }
+/* 두 팝업(하우스키핑·주차) 크기 완전 일치 — 고정 높이 + cover 크롭 */
+.promo-link img { display: block; width: 100%; height: 360px; object-fit: cover; object-position: center; }
 .promo-cta {
   display: block;
   padding: 10px 12px;
@@ -873,6 +873,7 @@ ul { margin: 0; padding: 0; }
   .promo-drag:before { content: "⋮⋮ 이동 ⋮⋮"; }
   .promo-close { width: 32px; height: 22px; font-size: 16px; line-height: 20px; }
   .promo-link { margin-top: 22px; }
+  .promo-link img { height: 210px; }
   .promo-cta { padding: 8px 6px; font-size: 12px; }
 }
 
