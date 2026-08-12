@@ -556,10 +556,6 @@ ul { margin: 0; padding: 0; }
   border-bottom-right-radius: 12px;
   padding: 34px 32px;
 }
-/* 왼쪽 팝업(width 260 + 여백)이 폼을 가리지 않도록 넓은 화면에서 폼 영역을 오른쪽으로 밀기 */
-@media screen and (min-width: 1100px) {
-  #panelApply .contact-form-wrap { padding-left: 300px; }
-}
 .contact-form-wrap .form {
   background: transparent;
   border: 0;
@@ -908,8 +904,8 @@ ul { margin: 0; padding: 0; }
           box-shadow: 0 12px 40px rgba(13,43,69,.28);
   -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
 }
-#promoPopup { left: 10px; }
-#promoPopupParking { top: 540px; left: 10px; }
+#promoPopup { right: 148px; }
+#promoPopupParking { right: 428px; }
 .promo-popup.promo-hidden { display: none; }
 .promo-popup.promo-dragging { -webkit-transition: none !important; transition: none !important; opacity: 0.92; }
 /* 상단 드래그 핸들 (팝업을 잡고 이동) */
@@ -961,8 +957,8 @@ ul { margin: 0; padding: 0; }
 /* 모바일: 세로 스택 (하우스키핑 위, 주차 아래) — 이미지는 자연 비율로 전체 노출 */
 @media screen and (max-width: 640px) {
   .promo-popup { width: 150px; }
-  #promoPopup { top: 76px; left: 10px; }
-  #promoPopupParking { top: 316px; left: 10px; }
+  #promoPopup { top: 76px; right: 10px; }
+  #promoPopupParking { top: 316px; right: 10px; }
   .promo-drag { height: 22px; right: 32px; line-height: 22px; font-size: 10px; }
   .promo-drag:before { content: "⋮⋮ 이동 ⋮⋮"; }
   .promo-close { width: 32px; height: 22px; font-size: 16px; line-height: 20px; }
